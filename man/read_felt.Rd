@@ -9,7 +9,7 @@ read_felt(url, ..., type = "features")
 \arguments{
 \item{url}{A Felt URL}
 
-\item{...}{Additional parameters passed to [sf::read_sf()]}
+\item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}}
 }
 \value{
 A simple feature data.frame.
@@ -18,5 +18,5 @@ A simple feature data.frame.
 Read data from a Felt map URL as a GeoJSON.
 }
 \seealso{
-[sf::read_sf()]
+\code{\link[sf:st_read]{sf::read_sf()}}
 }
