@@ -14,7 +14,16 @@ check_felt_url(
   ...
 )
 }
+\arguments{
+\item{x, url}{Object to check.}
+
+\item{message}{Message passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} if url is not a Felt url.}
+
+\item{call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+}
 \description{
 Check Felt URLs
 }
-\keyword{internal}

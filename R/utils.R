@@ -3,7 +3,9 @@
 
 #' Check Felt URLs
 #'
-#' @keywords internal
+#' @param x,url Object to check.
+#' @param message Message passed to [cli::cli_abort()] if url is not a Felt url.
+#' @inheritParams rlang::args_error_context
 #' @export
 is_felt_url <- function(x) {
   is_url(x) & grepl("felt.com", x)
@@ -11,7 +13,6 @@ is_felt_url <- function(x) {
 
 #' @rdname is_felt_url
 #' @name check_felt_url
-#' @keywords internal
 #' @export
 check_felt_url <- function(url,
                            message = "{.arg url} must be a Felt URL.",
