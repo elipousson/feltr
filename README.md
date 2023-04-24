@@ -9,6 +9,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Codecov test
+coverage](https://codecov.io/gh/elipousson/feltr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/elipousson/feltr?branch=main)
 <!-- badges: end -->
 
 The goal of feltr is to read maps from Felt as simple feature objects.

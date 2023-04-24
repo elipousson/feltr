@@ -3,3 +3,5 @@
 ^README\.Rmd$
 ^LICENSE\.md$
 ^codemeta\.json$
+^codecov\.yml$
+^\.github$
