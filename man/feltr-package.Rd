@@ -12,6 +12,7 @@ Read Felt maps to simple feature objects in R.
 Useful links:
 \itemize{
   \item \url{https://github.com/elipousson/feltr/}
+  \item \url{https://elipousson.github.io/feltr/}
   \item Report bugs at \url{https://github.com/elipousson/feltr/issues}
 }
 
