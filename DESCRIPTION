@@ -8,7 +8,7 @@ Authors@R:
 Maintainer: Eli Pousson <eli.pousson@gmail.com>
 Description: Read Felt maps to simple feature objects in R.
 License: MIT + file LICENSE
-URL: https://github.com/elipousson/feltr/
+URL: https://github.com/elipousson/feltr/, https://elipousson.github.io/feltr/
 BugReports: https://github.com/elipousson/feltr/issues
 Imports: 
     cli,
