@@ -81,6 +81,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "rasterpic",
+      "name": "rasterpic",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rasterpic"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -144,7 +156,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "10.311KB",
+  "fileSize": "89.157KB",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",

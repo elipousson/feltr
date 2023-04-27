@@ -4,20 +4,27 @@
 \alias{read_felt}
 \title{Read data from a Felt map URL}
 \usage{
-read_felt(url, type = "features", ..., rename = TRUE)
+read_felt(url, type = "features", ..., crs = 3857, rename = TRUE)
 }
 \arguments{
-\item{url}{A Felt URL}
+\item{url}{A Felt map URL.}
 
-\item{type}{Type of data to return. Defaults to "features".}
+\item{type}{Type of data to return, "features" (default) or "data". If type
+is "data", the function returns the parsed JSON included in the body of the
+map page (which includes both features and other user and layer metadata).}
 
-\item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}}
+\item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+
+\item{crs}{Coordinate reference system to return. Defaults to 3857.}
 
 \item{rename}{If \code{TRUE} (default), strip the prefix text "felt-" from all
 column names.}
 }
 \value{
 A simple feature data.frame.
+
+A sf object if type is "features" or a list of the parsed JSON found
+in the "felt-data" div if type is "data".
 }
 \description{
 Read data from a Felt map URL as a GeoJSON.

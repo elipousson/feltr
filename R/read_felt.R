@@ -2,20 +2,26 @@
 #'
 #' Read data from a Felt map URL as a GeoJSON.
 #'
-#' @param url A Felt URL
-#' @param type Type of data to return. Defaults to "features".
+#' @param url A Felt map URL.
+#' @param type Type of data to return, "features" (default) or "data". If type
+#'   is "data", the function returns the parsed JSON included in the body of the
+#'   map page (which includes both features and other user and layer metadata).
+#' @param ... Additional parameters passed to [sf::read_sf()].
+#' @param crs Coordinate reference system to return. Defaults to 3857.
 #' @param rename If `TRUE` (default), strip the prefix text "felt-" from all
 #'   column names.
-#' @param ... Additional parameters passed to [sf::read_sf()]
 #' @return A simple feature data.frame.
 #' @seealso [sf::read_sf()]
 #' @rdname read_felt
+#' @returns A sf object if type is "features" or a list of the parsed JSON found
+#'   in the "felt-data" div if type is "data".
 #' @export
 #' @importFrom sf read_sf
 #' @importFrom rlang set_names
 read_felt <- function(url,
                       type = "features",
                       ...,
+                      crs = 3857,
                       rename = TRUE) {
   url <- felt_url_build(url, type)
   type <- match.arg(type, c("features", "data"))
@@ -25,18 +31,20 @@ read_felt <- function(url,
     return(resp_body_felt_data(resp))
   }
 
-  url <- paste0("/vsicurl/", url)
-  data <- sf::read_sf(url, ...)
+  features <- sf::read_sf(paste0("/vsicurl/", url), ...)
+  features <- sf::st_transform(features, crs)
 
   if (!rename) {
-    return(data)
+    return(features)
   }
 
-  rlang::set_names(data, sub("felt-", "", names(data)))
+  rlang::set_names(features, sub("felt-", "", names(features)))
 }
 
 #' @noRd
-felt_url_build <- function(url, type = "features") {
+felt_url_build <- function(url, type = "features", call = caller_env()) {
+  check_required(url, call = call)
+
   url <- gsub("\\?.*$|/$", "", url)
 
   base_url <- "https://felt.com/map/"

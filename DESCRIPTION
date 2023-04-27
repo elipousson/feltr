@@ -19,6 +19,7 @@ Suggests:
     covr,
     httr2,
     jsonlite,
+    rasterpic,
     testthat (>= 3.0.0),
     xml2
 Config/testthat/edition: 3

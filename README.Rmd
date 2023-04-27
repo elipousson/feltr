@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/elipousson/feltr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/elipousson/feltr?branch=main)
 <!-- badges: end -->
 
-The goal of feltr is to read maps from Felt as simple feature objects.
+The goal of feltr is to read maps from Felt as simple feature or `SpatRaster` objects.
 
 ## Installation
 
@@ -38,8 +38,22 @@ library(feltr)
 ## basic example code
 ```
 
+You can use `read_felt()` to create an sf object with features from a map URL.
 
 ```{r read}
-read_felt("https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD")
+site_plan <- read_felt("https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD")
+
+plot(site_plan)
+```
+
+You can also use `read_felt_raster()` (a wrapper for `rasterpic::rasterpic_img()`) to create a `SpatRaster` object from a "Image" type feature in Felt.
+
+```{r}
+image_map <- read_felt_raster(
+  "https://felt.com/map/feltr-sample-map-read-felt-raster-oiinodTbT79BEueYdGp1aND",
+  "https://tile.loc.gov/image-services/iiif/service:gmd:gmd370:g3700:g3700:ct003955/full/pct:12.5/0/default.jpg"
+  )
+
+image_map
 ```
 
