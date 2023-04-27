@@ -4,7 +4,7 @@
 \alias{read_felt_raster}
 \title{Use rasterpic to create a \code{SpatRaster} object from a Felt map}
 \usage{
-read_felt_raster(x, images, ..., crs = 3857)
+read_felt_raster(x, images = NULL, ..., col = NULL, crs = 3857)
 }
 \arguments{
 \item{x}{If x is a Felt map URL, it is passed to \code{\link[=read_felt]{read_felt()}} to create a
@@ -12,16 +12,20 @@ data.frame of features with a "type" and "text" columns. If x is a
 data.frame, it is expected to be a data.frame created by reading a Felt map
 with \code{\link[=read_felt]{read_felt()}} but could be a sf object with a type column that
 includes the value "Image" and (if images is named) a text column with
-matching text.}
+matching text. Required.}
 
 \item{images}{A vector of image file paths or URLs with a "png", "jpeg/jpg",
 or "tiff/tif" file extension. images must be ordered to match the order of
 "Image" type features in the input data.frame x or have names that match
 the text column for x. If images is named, any "Image" features in x with
 text that does not match the names for images are excluded from the
-returned list.}
+returned list. Defaults to \code{NULL}. Optional if col is provided.}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
+
+\item{col}{If features in x contain an attribute with a file path or URL, set
+col as the name of the attribute column. col is ignored if images is
+provided. Defaults to \code{NULL}.}
 
 \item{crs}{Coordinate reference system to return. Defaults to 3857.}
 }

@@ -8,5 +8,6 @@
 #' @importFrom rlang has_name
 #' @importFrom rlang has_length
 #' @importFrom rlang is_named
+#' @importFrom rlang is_null
 ## usethis namespace: end
 NULL

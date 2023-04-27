@@ -9,33 +9,43 @@
 #'   data.frame, it is expected to be a data.frame created by reading a Felt map
 #'   with [read_felt()] but could be a sf object with a type column that
 #'   includes the value "Image" and (if images is named) a text column with
-#'   matching text.
+#'   matching text. Required.
 #' @param images A vector of image file paths or URLs with a "png", "jpeg/jpg",
 #'   or "tiff/tif" file extension. images must be ordered to match the order of
 #'   "Image" type features in the input data.frame x or have names that match
 #'   the text column for x. If images is named, any "Image" features in x with
 #'   text that does not match the names for images are excluded from the
-#'   returned list.
+#'   returned list. Defaults to `NULL`. Optional if col is provided.
 #' @inheritParams read_felt
+#' @param col If features in x contain an attribute with a file path or URL, set
+#'   col as the name of the attribute column. col is ignored if images is
+#'   provided. Defaults to `NULL`.
 #' @returns If images is length 1, a `SpatRaster` object is returned. Otherwise,
 #'   the function returns a list of `SpatRaster` objects of the same length as
 #'   images.
 #' @export
 #' @importFrom sf st_transform
 read_felt_raster <- function(x,
-                             images,
+                             images = NULL,
                              ...,
+                             col = NULL,
                              crs = 3857) {
   check_required(x)
-  check_required(images)
 
   if (is_url(x)) {
-    x <- read_felt(x, type = "features", crs = crs)
+    x <- read_felt(x, type = "features", ..., crs = crs)
   }
 
   stopifnot(is.data.frame(x) && all(has_name(x, "type")))
 
   x <- x[x[["type"]] == "Image", ]
+
+  if (!is_null(col) && has_name(x, col) && is_null(images)) {
+    images <- x[[col]]
+  }
+
+  check_required(images)
+  stopifnot(!any(is.na(images)))
 
   if (is_named(images)) {
     x <- x[x[["text"]] %in% names(images), ]
@@ -49,14 +59,16 @@ read_felt_raster <- function(x,
   raster_images <- lapply(
     seq_len(nrow(x)),
     function(i) {
+      feature <- x[i, ]
+
       if (is_named(images)) {
-        img <- images[names(images) == x[i, ][["text"]]][[1]]
+        img <- images[names(images) == feature[["text"]]][[1]]
       } else {
         img <- images[[i]]
       }
 
       rasterpic::rasterpic_img(
-        x[i, ],
+        feature,
         img
       )
     }
