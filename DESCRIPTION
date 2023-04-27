@@ -8,7 +8,8 @@ Authors@R:
 Maintainer: Eli Pousson <eli.pousson@gmail.com>
 Description: Read Felt maps to simple feature objects in R.
 License: MIT + file LICENSE
-URL: https://github.com/elipousson/feltr/, https://elipousson.github.io/feltr/
+URL: https://github.com/elipousson/feltr/,
+    https://elipousson.github.io/feltr/
 BugReports: https://github.com/elipousson/feltr/issues
 Imports: 
     cli,
@@ -17,9 +18,11 @@ Imports:
     sf
 Suggests: 
     covr,
-    testthat (>= 3.0.0)
+    jsonlite,
+    testthat (>= 3.0.0),
+    xml2
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

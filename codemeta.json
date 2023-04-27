@@ -4,6 +4,7 @@
   "identifier": "feltr",
   "description": "Read Felt maps to simple feature objects in R.",
   "name": "feltr: Read Spatial Data from Felt",
+  "relatedLink": "https://elipousson.github.io/feltr/",
   "codeRepository": "https://github.com/elipousson/feltr/",
   "issueTracker": "https://github.com/elipousson/feltr/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -56,6 +57,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -66,6 +79,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
     }
   ],
   "softwareRequirements": {
@@ -119,8 +144,9 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "8.478KB",
+  "fileSize": "10.399KB",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
+  "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",
   "keywords": ["r-package", "rspatial", "rstats", "felt"]
 }
