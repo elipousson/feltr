@@ -54,7 +54,7 @@ object based on the feature geometry.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt_raster</span><span class="op">(</span><span class="va">x</span>, <span class="va">images</span>, <span class="va">...</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt_raster</span><span class="op">(</span><span class="va">x</span>, images <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, col <span class="op">=</span> <span class="cn">NULL</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -65,7 +65,7 @@ data.frame of features with a "type" and "text" columns. If x is a
 data.frame, it is expected to be a data.frame created by reading a Felt map
 with <code><a href="read_felt.html">read_felt()</a></code> but could be a sf object with a type column that
 includes the value "Image" and (if images is named) a text column with
-matching text.</p></dd>
+matching text. Required.</p></dd>
 
 
 <dt>images</dt>
@@ -74,11 +74,17 @@ or "tiff/tif" file extension. images must be ordered to match the order of
 "Image" type features in the input data.frame x or have names that match
 the text column for x. If images is named, any "Image" features in x with
 text that does not match the names for images are excluded from the
-returned list.</p></dd>
+returned list. Defaults to <code>NULL</code>. Optional if col is provided.</p></dd>
 
 
 <dt>...</dt>
 <dd><p>Additional parameters passed to <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::read_sf()</a></code>.</p></dd>
+
+
+<dt>col</dt>
+<dd><p>If features in x contain an attribute with a file path or URL, set
+col as the name of the attribute column. col is ignored if images is
+provided. Defaults to <code>NULL</code>.</p></dd>
 
 
 <dt>crs</dt>
