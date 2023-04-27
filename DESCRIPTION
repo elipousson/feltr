@@ -13,11 +13,11 @@ URL: https://github.com/elipousson/feltr/,
 BugReports: https://github.com/elipousson/feltr/issues
 Imports: 
     cli,
-    httr2,
     rlang,
     sf
 Suggests: 
     covr,
+    httr2,
     jsonlite,
     testthat (>= 3.0.0),
     xml2

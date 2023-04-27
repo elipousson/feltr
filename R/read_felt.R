@@ -11,23 +11,22 @@
 #' @seealso [sf::read_sf()]
 #' @rdname read_felt
 #' @export
-#' @importFrom httr2 request req_perform resp_body_json resp_body_string
 #' @importFrom sf read_sf
 #' @importFrom rlang set_names
 read_felt <- function(url,
-                      ...,
                       type = "features",
+                      ...,
                       rename = TRUE) {
   url <- felt_url_build(url, type)
-  resp <- req_felt(url)
   type <- match.arg(type, c("features", "data"))
 
   if (type != "features") {
+    resp <- req_felt(url)
     return(resp_body_felt_data(resp))
   }
 
-  body <- httr2::resp_body_string(resp)
-  data <- sf::read_sf(body, ...)
+  url <- paste0("/vsicurl/", url)
+  data <- sf::read_sf(url, ...)
 
   if (!rename) {
     return(data)
@@ -61,6 +60,7 @@ felt_url_build <- function(url, type = "features") {
 
 #' @noRd
 req_felt <- function(url) {
+  rlang::check_installed("httr2")
   req <- httr2::request(url)
   req <- httr2::req_user_agent(req,
     "rairtable (https://github.com/elipousson/feltr)")

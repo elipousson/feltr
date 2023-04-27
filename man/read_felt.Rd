@@ -4,14 +4,14 @@
 \alias{read_felt}
 \title{Read data from a Felt map URL}
 \usage{
-read_felt(url, ..., type = "features", rename = TRUE)
+read_felt(url, type = "features", ..., rename = TRUE)
 }
 \arguments{
 \item{url}{A Felt URL}
 
-\item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}}
-
 \item{type}{Type of data to return. Defaults to "features".}
+
+\item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}}
 
 \item{rename}{If \code{TRUE} (default), strip the prefix text "felt-" from all
 column names.}

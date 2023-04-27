@@ -57,6 +57,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "httr2",
+      "name": "httr2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
       "provider": {
@@ -108,18 +120,6 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "httr2",
-      "name": "httr2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr2"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
       "provider": {
@@ -130,7 +130,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "4": {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -144,7 +144,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "10.399KB",
+  "fileSize": "10.311KB",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",
