@@ -48,21 +48,27 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt</span><span class="op">(</span><span class="va">url</span>, type <span class="op">=</span> <span class="st">"features"</span>, <span class="va">...</span>, rename <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt</span><span class="op">(</span><span class="va">url</span>, type <span class="op">=</span> <span class="st">"features"</span>, <span class="va">...</span>, crs <span class="op">=</span> <span class="fl">3857</span>, rename <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>url</dt>
-<dd><p>A Felt URL</p></dd>
+<dd><p>A Felt map URL.</p></dd>
 
 
 <dt>type</dt>
-<dd><p>Type of data to return. Defaults to "features".</p></dd>
+<dd><p>Type of data to return, "features" (default) or "data". If type
+is "data", the function returns the parsed JSON included in the body of the
+map page (which includes both features and other user and layer metadata).</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Additional parameters passed to <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::read_sf()</a></code></p></dd>
+<dd><p>Additional parameters passed to <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::read_sf()</a></code>.</p></dd>
+
+
+<dt>crs</dt>
+<dd><p>Coordinate reference system to return. Defaults to 3857.</p></dd>
 
 
 <dt>rename</dt>
@@ -75,6 +81,10 @@ column names.</p></dd>
     
 
 <p>A simple feature data.frame.</p>
+
+
+<p>A sf object if type is "features" or a list of the parsed JSON found
+in the "felt-data" div if type is "data".</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
