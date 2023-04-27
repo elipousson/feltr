@@ -156,7 +156,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "89.157KB",
+  "fileSize": "89.508KB",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",
