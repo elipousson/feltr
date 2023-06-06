@@ -33,7 +33,7 @@ read_felt_raster <- function(x,
   check_required(x)
 
   if (is_url(x)) {
-    x <- read_felt(x, type = "features", ..., crs = crs)
+    x <- read_felt(x, ..., crs = crs)
   }
 
   stopifnot(is.data.frame(x) && all(has_name(x, "type")))

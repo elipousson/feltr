@@ -7,7 +7,7 @@ test_that("read_felt works", {
   )
 
   expect_type(
-    read_felt(url, type = "data"),
+    get_felt_data(url),
     "list"
   )
 })

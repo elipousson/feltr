@@ -10,14 +10,17 @@ is_felt_url(x)
 check_felt_url(
   url,
   message = "{.arg url} must be a Felt URL.",
-  call = caller_env(),
-  ...
+  ...,
+  call = caller_env()
 )
 }
 \arguments{
 \item{x, url}{Object to check.}
 
 \item{message}{Message passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} if url is not a Felt url.}
+
+\item{...}{Additional parameters passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} if url is not a
+Felt url.}
 
 \item{call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be

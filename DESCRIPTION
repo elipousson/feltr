@@ -13,11 +13,13 @@ URL: https://github.com/elipousson/feltr/,
 BugReports: https://github.com/elipousson/feltr/issues
 Imports: 
     cli,
-    rlang,
-    sf
+    httr2,
+    rlang (>= 1.1.0),
+    settoken (>= 0.1.0),
+    sf,
+    vctrs
 Suggests: 
     covr,
-    httr2,
     jsonlite,
     rasterpic,
     testthat (>= 3.0.0),
@@ -27,3 +29,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+Remotes: 
+    elipousson/settoken

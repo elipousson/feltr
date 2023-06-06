@@ -1,49 +1,68 @@
-#' Read data from a Felt map URL
+#' Read data from a Felt map
 #'
-#' Read data from a Felt map URL as a GeoJSON.
+#' Read simple features from a Felt map or get data embedded in the website of a
+#' Felt map. [get_felt_data()] returns the parsed JSON included in the body of a
+#' Felt map website (which includes both features and other user and layer
+#' metadata).
 #'
 #' @param url A Felt map URL.
-#' @param type Type of data to return, "features" (default) or "data". If type
-#'   is "data", the function returns the parsed JSON included in the body of the
-#'   map page (which includes both features and other user and layer metadata).
 #' @param ... Additional parameters passed to [sf::read_sf()].
 #' @param crs Coordinate reference system to return. Defaults to 3857.
+#' @inheritParams request_felt
 #' @param rename If `TRUE` (default), strip the prefix text "felt-" from all
 #'   column names.
-#' @return A simple feature data.frame.
+#' @param name_repair Passed to repair parameter of [vctrs::vec_as_names()].
+#'   Defaults to "check_unique".
+#' @inheritParams rlang::args_error_context
+#' @returns A simple feature data frame or a list of the parsed JSON found
+#'   in the "felt-data" div of a Felt map webpage.
 #' @seealso [sf::read_sf()]
 #' @rdname read_felt
-#' @returns A sf object if type is "features" or a list of the parsed JSON found
-#'   in the "felt-data" div if type is "data".
 #' @export
 #' @importFrom sf read_sf
 #' @importFrom rlang set_names
 read_felt <- function(url,
-                      type = "features",
                       ...,
                       crs = 3857,
-                      rename = TRUE) {
-  url <- felt_url_build(url, type)
-  type <- match.arg(type, c("features", "data"))
+                      token = NULL,
+                      rename = TRUE,
+                      name_repair = "check_unique") {
+  resp <- request_felt(
+    endpoint = "read map",
+    token = token,
+    map_id = get_felt_data(url)[["mapId"]]
+    )
 
-  if (type != "features") {
-    resp <- req_felt(url)
-    return(resp_body_felt_data(resp))
-  }
-
-  features <- sf::read_sf(paste0("/vsicurl/", url), ...)
+  features <- sf::read_sf(httr2::resp_body_string(resp), ...)
   features <- sf::st_transform(features, crs)
 
   if (!rename) {
     return(features)
   }
 
-  rlang::set_names(features, sub("felt-", "", names(features)))
+  rlang::set_names(
+    features,
+    vctrs::vec_as_names(
+      sub("felt-", "", names(features)),
+      repair = name_repair
+      )
+    )
+}
+
+#' @rdname read_felt
+#' @name get_felt_data
+#' @export
+get_felt_data <- function(url, call = caller_env()) {
+  url <- felt_url_build(url, type = "data", call = call)
+
+  resp <- req_felt(url, call = call)
+
+  resp_body_felt_data(resp)
 }
 
 #' @noRd
 felt_url_build <- function(url, type = "features", call = caller_env()) {
-  check_required(url, call = call)
+  check_string(url, call = call)
 
   url <- gsub("\\?.*$|/$", "", url)
 
@@ -53,7 +72,7 @@ felt_url_build <- function(url, type = "features", call = caller_env()) {
     url <- paste0(base_url, url)
   }
 
-  check_felt_url(url)
+  check_felt_url(url, call = call)
 
   if (type != "features") {
     return(url)
@@ -67,18 +86,22 @@ felt_url_build <- function(url, type = "features", call = caller_env()) {
 }
 
 #' @noRd
-req_felt <- function(url) {
-  rlang::check_installed("httr2")
-  req <- httr2::request(url)
-  req <- httr2::req_user_agent(req,
-    "rairtable (https://github.com/elipousson/feltr)")
-  httr2::req_perform(req)
+req_felt <- function(base_url = "https://felt.com/api/v1",
+                     call = caller_env()) {
+  req <- httr2::request(base_url)
+  req <- httr2::req_user_agent(
+    req,
+    "rairtable (https://github.com/elipousson/feltr)"
+    )
+  httr2::req_perform(req, error_call = call)
 }
 
 #' @noRd
 resp_body_felt_data <- function(resp) {
   rlang::check_installed(c("xml2", "jsonlite"))
   body <- httr2::resp_body_html(resp)
+  # FIXME: Comments are stored in threads and users but they aren't coming through this way
+  # The divs containing comments use the role = "thread" attribute - extracting these divs from the XML may be another way to get access to the information
   part <- xml2::xml_children(xml2::xml_find_first(body, "//div"))[1]
   part <- xml2::xml_contents(part)
   json <- jsonlite::parse_json(as.character(part))

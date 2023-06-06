@@ -2,32 +2,49 @@
 % Please edit documentation in R/read_felt.R
 \name{read_felt}
 \alias{read_felt}
-\title{Read data from a Felt map URL}
+\alias{get_felt_data}
+\title{Read data from a Felt map}
 \usage{
-read_felt(url, type = "features", ..., crs = 3857, rename = TRUE)
+read_felt(
+  url,
+  ...,
+  crs = 3857,
+  token = NULL,
+  rename = TRUE,
+  name_repair = "check_unique"
+)
+
+get_felt_data(url, call = caller_env())
 }
 \arguments{
 \item{url}{A Felt map URL.}
-
-\item{type}{Type of data to return, "features" (default) or "data". If type
-is "data", the function returns the parsed JSON included in the body of the
-map page (which includes both features and other user and layer metadata).}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
 \item{crs}{Coordinate reference system to return. Defaults to 3857.}
 
+\item{token}{Felt personal access token}
+
 \item{rename}{If \code{TRUE} (default), strip the prefix text "felt-" from all
 column names.}
+
+\item{name_repair}{Passed to repair parameter of \code{\link[vctrs:vec_as_names]{vctrs::vec_as_names()}}.
+Defaults to "check_unique".}
+
+\item{call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \value{
-A simple feature data.frame.
-
-A sf object if type is "features" or a list of the parsed JSON found
-in the "felt-data" div if type is "data".
+A simple feature data frame or a list of the parsed JSON found
+in the "felt-data" div of a Felt map webpage.
 }
 \description{
-Read data from a Felt map URL as a GeoJSON.
+Read simple features from a Felt map or get data embedded in the website of a
+Felt map. \code{\link[=get_felt_data]{get_felt_data()}} returns the parsed JSON included in the body of a
+Felt map website (which includes both features and other user and layer
+metadata).
 }
 \seealso{
 \code{\link[sf:st_read]{sf::read_sf()}}
