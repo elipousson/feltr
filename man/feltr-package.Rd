@@ -6,6 +6,8 @@
 \alias{feltr-package}
 \title{feltr: Read Spatial Data from Felt}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Read Felt maps to simple feature objects in R.
 }
 \seealso{

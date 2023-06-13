@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# feltr
+# feltr <a href="https://elipousson.github.io/feltr/"><img src="man/figures/logo.png" align="right" height="124" alt="feltr website" /></a>
 
 <!-- badges: start -->
 
@@ -60,7 +60,7 @@ image_map
 #> resolution  : 6439.813, 6439.813  (x, y)
 #> extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)
 #> coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-#> source      : file94ce7537a3e0.jpg 
+#> source      : file68487436c48e.jpg 
 #> colors RGB  : 1, 2, 3 
-#> names       : file94ce7537a3e0_1, file94ce7537a3e0_2, file94ce7537a3e0_3
+#> names       : file68487436c48e_1, file68487436c48e_2, file68487436c48e_3
 ```
