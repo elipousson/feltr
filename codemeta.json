@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/elipousson/feltr/",
   "issueTracker": "https://github.com/elipousson/feltr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.3 (2023-03-15)",
+  "runtimePlatform": "R version 4.3.0 (2023-04-21)",
   "author": [
     {
       "@type": "Person",
@@ -54,18 +54,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=covr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "httr2",
-      "name": "httr2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
     {
       "@type": "SoftwareApplication",
@@ -132,8 +120,21 @@
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "httr2",
+      "name": "httr2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -142,7 +143,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "3": {
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "settoken",
+      "name": "settoken",
+      "version": ">= 0.1.0",
+      "sameAs": "https://github.com/elipousson/settoken"
+    },
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -154,9 +162,28 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "vctrs",
+      "name": "vctrs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vctrs"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 2.10"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "90.283KB",
+  "fileSize": "226.688KB",
+  "releaseNotes": "https://github.com/elipousson/feltr/blob/master/NEWS.md",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",
