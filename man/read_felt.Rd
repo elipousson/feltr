@@ -7,6 +7,7 @@
 \usage{
 read_felt(
   url,
+  map_id = NULL,
   ...,
   crs = 3857,
   token = NULL,
@@ -18,6 +19,8 @@ get_felt_data(url, call = caller_env())
 }
 \arguments{
 \item{url}{A Felt map URL.}
+
+\item{map_id}{A Felt map ID, optional if url is supplied.}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
@@ -42,7 +45,8 @@ in the "felt-data" div of a Felt map webpage.
 }
 \description{
 Read simple features from a Felt map or get data embedded in the website of a
-Felt map. \code{\link[=get_felt_data]{get_felt_data()}} returns the parsed JSON included in the body of a
+Felt map. \code{\link[=read_felt]{read_felt()}} is a wrapper for \code{\link[=read_felt_map]{read_felt_map()}} with a few extra
+features. \code{\link[=get_felt_data]{get_felt_data()}} returns the parsed JSON included in the body of a
 Felt map website (which includes both features and other user and layer
 metadata).
 }

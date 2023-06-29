@@ -7,6 +7,8 @@
 request_felt(
   base_url = "https://felt.com/api/v1",
   endpoint = NULL,
+  template = NULL,
+  data = NULL,
   token = NULL,
   ...,
   perform = TRUE,
@@ -18,12 +20,15 @@ request_felt(
 
 \item{token}{Felt personal access token}
 
+\item{perform}{If \code{TRUE} (default), perform the request with
+\code{\link[httr2:req_perform]{httr2::req_perform()}}. If \code{FALSE}, return the request object.}
+
 \item{call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
-Build and perform a request for the Felt API
+An internal function to help build and perform a request for the Felt API.
 }
 \keyword{internal}

@@ -8,9 +8,9 @@
 felt_user <- function(token = NULL) {
   resp <-
     request_felt(
-    endpoint = "read profile",
-    token = token
-  )
+      endpoint = "read profile",
+      token = token
+    )
 
   body <- httr2::resp_body_json(resp)
 

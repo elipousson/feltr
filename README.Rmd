@@ -52,7 +52,7 @@ You can also use `read_felt_raster()` (a wrapper for `rasterpic::rasterpic_img()
 image_map <- read_felt_raster(
   "https://felt.com/map/feltr-sample-map-read-felt-raster-oiinodTbT79BEueYdGp1aND",
   "https://tile.loc.gov/image-services/iiif/service:gmd:gmd370:g3700:g3700:ct003955/full/pct:12.5/0/default.jpg"
-  )
+)
 
 image_map
 ```

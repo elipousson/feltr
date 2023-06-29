@@ -52,7 +52,7 @@ You can also use `read_felt_raster()` (a wrapper for
 image_map <- read_felt_raster(
   "https://felt.com/map/feltr-sample-map-read-felt-raster-oiinodTbT79BEueYdGp1aND",
   "https://tile.loc.gov/image-services/iiif/service:gmd:gmd370:g3700:g3700:ct003955/full/pct:12.5/0/default.jpg"
-  )
+)
 
 image_map
 #> class       : SpatRaster 
@@ -60,7 +60,7 @@ image_map
 #> resolution  : 6439.813, 6439.813  (x, y)
 #> extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)
 #> coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-#> source      : file68487436c48e.jpg 
+#> source      : filebe827f397dd1.jpg 
 #> colors RGB  : 1, 2, 3 
-#> names       : file68487436c48e_1, file68487436c48e_2, file68487436c48e_3
+#> names       : filebe827f397dd1_1, filebe827f397dd1_2, filebe827f397dd1_3
 ```
