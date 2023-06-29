@@ -37,10 +37,16 @@
     <loc>https://elipousson.github.io/feltr/reference/read_felt.html</loc>
   </url>
   <url>
+    <loc>https://elipousson.github.io/feltr/reference/read_felt_map.html</loc>
+  </url>
+  <url>
     <loc>https://elipousson.github.io/feltr/reference/read_felt_raster.html</loc>
   </url>
   <url>
     <loc>https://elipousson.github.io/feltr/reference/request_felt.html</loc>
+  </url>
+  <url>
+    <loc>https://elipousson.github.io/feltr/reference/set_felt_map_data.html</loc>
   </url>
   <url>
     <loc>https://elipousson.github.io/feltr/reference/set_felt_token.html</loc>
