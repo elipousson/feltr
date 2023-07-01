@@ -60,39 +60,6 @@ get_felt_data <- function(url, call = caller_env()) {
 }
 
 #' @noRd
-felt_url_build <- function(url, type = "features", call = caller_env()) {
-  check_string(url, call = call)
-
-  url <- gsub("\\?.*$|/$", "", url)
-
-  base_url <- "https://felt.com/map/"
-
-  if (!is_url(url)) {
-    url <- paste0(base_url, url)
-  }
-
-  check_felt_url(url, call = call)
-
-  if (type != "features") {
-    return(url)
-  }
-
-  if (is_geojson_fileext(url)) {
-    return(url)
-  }
-
-  paste0(url, ".geojson")
-}
-
-#' Parse Felt Map ID from URL
-#'
-#' @noRd
-parse_url_map_id <- function(url) {
-  url_path <- httr2::url_parse(url)[["path"]]
-  string_extract(url_path, "(?<=-)[[:alnum:]]+$")
-}
-
-#' @noRd
 req_felt <- function(base_url = "https://felt.com/api/v1",
                      call = caller_env()) {
   req <- httr2::request(base_url)
