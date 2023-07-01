@@ -67,22 +67,44 @@ safety_check <- function(safely = NULL,
   )
 }
 
-#' Adapted from cliExtras::cli_ask()
+#' Adapted from cliExtras::cli_menu()
 #'
 #' @noRd
-cli_ask <- function(prompt = "?",
-                    ...,
-                    .envir = rlang::caller_env(),
-                    call = .envir) {
-  if (!rlang::is_interactive()) {
-    cli_abort(
-      "User interaction is required.",
-      call = call
-    )
-  }
+cli_menu <- function(choices,
+                     title = NULL,
+                     message = "Enter your selection or press {.kbd 0} to exit.",
+                     prompt = "Selection:",
+                     exit = 0,
+                     ind = FALSE,
+                     id = NULL,
+                     call = .envir,
+                     .envir = parent.frame()) {
+  check_character(choices)
+  choices <- rlang::set_names(choices, seq_along(choices))
+  title <- title %||% "Choices:"
 
-  if (!rlang::is_empty(rlang::list2(...))) {
-    cli::cli_bullets(..., .envir = .envir)
+  cli::cli({
+    cli::cli_bullets(title, id = id, .envir = .envir)
+    cli::cli_ol(choices, id = id)
+    cli::cli_par()
+  })
+
+  choice <- cli_ask(prompt, message, .envir = .envir)
+
+  while (TRUE) {
+    if (identical(as.integer(choice), as.integer(exit))) {
+      break
+    }
+
+    if (choice %in% seq_along(choices)) {
+      if (ind) {
+        return(choice)
+      }
+
+      return(choices[[choice]])
+    }
+
+    choice <- cli_ask(prompt = prompt, .envir = .envir)
   }
-  readline(paste0(prompt, "\u00a0"))
 }
+
