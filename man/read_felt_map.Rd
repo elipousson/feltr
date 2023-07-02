@@ -2,11 +2,21 @@
 % Please edit documentation in R/felt_map.R
 \name{read_felt_map}
 \alias{read_felt_map}
+\alias{get_felt_map}
 \alias{create_felt_map}
 \alias{delete_felt_map}
-\title{Read, create, or delete a Felt map}
+\title{Read Felt map elements, create a Felt map from a URL, or delete a Felt map}
 \usage{
-read_felt_map(url, map_id = NULL, ..., token = NULL)
+read_felt_map(url = NULL, map_id = NULL, ..., crs = NULL, token = NULL)
+
+get_felt_map(
+  url = NULL,
+  map_id = NULL,
+  ...,
+  read = FALSE,
+  simplifyVector = TRUE,
+  token = NULL
+)
 
 create_felt_map(
   title = NULL,
@@ -18,34 +28,46 @@ create_felt_map(
   token = NULL
 )
 
-delete_felt_map(url, map_id = NULL, safely = TRUE, token = NULL)
+delete_felt_map(url = NULL, map_id = NULL, safely = TRUE, token = NULL)
 }
 \arguments{
-\item{url}{A Felt map URL.}
+\item{url}{A Felt map URL, optional if map_id is supplied.}
 
 \item{map_id}{A Felt map ID, optional if url is supplied.}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 
+\item{crs}{Coordinate reference system. Passed to \code{\link[sf:st_transform]{sf::st_transform()}} if
+supplied.}
+
 \item{token}{Felt personal access token}
+
+\item{read}{If \code{TRUE}, add a sf object with the map data as an element and a
+list of Felt layers to the returned list of map attributes. Defaults to
+\code{FALSE}.}
+
+\item{simplifyVector}{Should JSON arrays containing only primitives (i.e.
+booleans, numbers, and strings) be caused to atomic vectors?}
 
 \item{title}{Map title}
 
 \item{description}{Map description}
 
-\item{location}{Location to center map, either a sf or sfc object or a length
-2 numeric vector in the form of \code{c("lon", "lat")}}
+\item{location}{Location to center map, either a sf, sfc, or bbox object or a
+length 2 numeric vector in the form of \code{c("lon", "lat")}. To pass
+coordinates in lat/lon order, set the \code{feltr.latlon} option to \code{TRUE}
+(option defaults to \code{FALSE}). If location is \code{NULL} (default), map is
+centered on Oakland, California.}
 
 \item{zoom}{Zoom level number}
 
-\item{layer_urls}{Raster layer URLs}
+\item{layer_urls}{A character vector or list of raster layer URLs.}
 
-\item{basemap}{Basemap, string ("default" or "satellite") or a valid layer
-URL or color as hex code.}
+\item{basemap}{Basemap, string ("default" or "satellite"), a valid layer URL,
+a color name, or a color hex code.}
 
 \item{safely}{If \code{TRUE} (default), check for user confirmation before
-deleting a Felt map. If \code{FALSE}, delete map without checking for
-confirmation.}
+deleting a Felt map. If \code{FALSE}, delete map without checking.}
 }
 \value{
 \code{\link[=read_felt_map]{read_felt_map()}} returns a sf object, \code{\link[=create_felt_map]{create_felt_map()}} invisibly
@@ -53,5 +75,21 @@ returns a list of attributes for the created map, and \code{\link[=delete_felt_m
 does not return anything.
 }
 \description{
-Read, create, or delete a Felt map from a URL or map ID.
+Read elements, create, or delete a Felt map from a URL or map ID.
+\code{\link[=get_felt_map]{get_felt_map()}} returns a list of map details and optionally (if \code{read = TRUE}) adds the map elements and layer list as elements in the list.
+}
+\examples{
+\dontrun{
+if (interactive()) {
+  map_data <- create_felt_map(title = "Example map")
+
+  url <- map_data$attributes$url
+
+  get_felt_map(url = url)
+
+  delete_felt_map(url = url)
+
+  read_felt_map("https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD")
+}
+}
 }

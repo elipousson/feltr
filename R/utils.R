@@ -107,4 +107,3 @@ cli_menu <- function(choices,
     choice <- cli_ask(prompt = prompt, .envir = .envir)
   }
 }
-

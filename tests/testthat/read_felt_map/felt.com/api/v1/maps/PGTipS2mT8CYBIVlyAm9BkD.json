@@ -1,0 +1,13 @@
+{
+    "data": {
+        "attributes": {
+            "title": "Site Plan Example",
+            "url": "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
+        },
+        "id": "PGTipS2mT8CYBIVlyAm9BkD",
+        "links": {
+            "self": "https://felt.com/api/v1/maps/PGTipS2mT8CYBIVlyAm9BkD"
+        },
+        "type": "map"
+    }
+}

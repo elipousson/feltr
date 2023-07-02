@@ -8,9 +8,9 @@ request_felt(
   base_url = "https://felt.com/api/v1",
   endpoint = NULL,
   template = NULL,
+  ...,
   data = NULL,
   token = NULL,
-  ...,
   perform = TRUE,
   call = caller_env()
 )

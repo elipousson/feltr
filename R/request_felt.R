@@ -13,9 +13,9 @@
 request_felt <- function(base_url = "https://felt.com/api/v1",
                          endpoint = NULL,
                          template = NULL,
+                         ...,
                          data = NULL,
                          token = NULL,
-                         ...,
                          perform = TRUE,
                          call = caller_env()) {
   req <- httr2::request(base_url)
@@ -25,7 +25,7 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
   }
 
   if (!is_null(data)) {
-    req <- httr2::req_body_json(req, data = data)
+    req <- httr2::req_body_json(req, data = vctrs::list_drop_empty(data))
   }
 
   req <- httr2::req_auth_bearer_token(
@@ -39,7 +39,13 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
   req <- httr2::req_error(
     req,
     body = function(err) {
-      err[["title"]]
+      msg <- err[["title"]]
+
+      if (has_name(err, "detail")) {
+        msg <- c(msg, "!" = err[["detail"]])
+      }
+
+      msg
     }
   )
 
@@ -58,8 +64,8 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
 #' @noRd
 req_felt_template <- function(req,
                               endpoint = c(
-                                "read profile", "read map", "create map",
-                                "delete map", "list maps", "create layer",
+                                "read profile", "read map", "get map", "create map",
+                                "delete map", "read layers", "create layer",
                                 "finish layer", "import url", "delete layer"
                               ),
                               template = NULL,
@@ -72,13 +78,15 @@ req_felt_template <- function(req,
   template <- template %||%
     switch(endpoint,
       "read profile" = "/user",
+      "get map" = "/maps/{map_id}",
       "read map" = "/maps/{map_id}/elements",
       "create map" = "/maps",
       "delete map" = "DELETE /maps/{map_id}",
+      "read layers" = "/maps/{map_id}/layers",
       "create layer" = "/maps/{map_id}/layers",
       "finish layer" = "/map/{map_id}/layers/{layer_id}/finish_upload",
       "import url" = "/maps/{map_id}/layers/url_import",
-      "delete layer" = "/maps/{map_id}/layers/{layer_id}"
+      "delete layer" = "DELETE /maps/{map_id}/layers/{layer_id}"
     )
 
   httr2::req_template(req, template = template, ...)

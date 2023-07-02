@@ -18,7 +18,7 @@ read_felt(
 get_felt_data(url, call = caller_env())
 }
 \arguments{
-\item{url}{A Felt map URL.}
+\item{url}{A Felt map URL, optional if map_id is supplied.}
 
 \item{map_id}{A Felt map ID, optional if url is supplied.}
 

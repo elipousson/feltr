@@ -13,6 +13,7 @@ URL: https://github.com/elipousson/feltr/,
 BugReports: https://github.com/elipousson/feltr/issues
 Imports: 
     cli,
+    grDevices,
     httr2,
     rlang (>= 1.1.0),
     settoken (>= 0.1.0),
@@ -20,6 +21,7 @@ Imports:
     vctrs
 Suggests: 
     covr,
+    httptest2,
     jsonlite,
     rasterpic,
     testthat (>= 3.0.0),

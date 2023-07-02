@@ -11,6 +11,7 @@ set_felt_map_data(
   zoom = NULL,
   layer_urls = NULL,
   basemap = c("default", "satellite"),
+  allow_null = TRUE,
   call = caller_env()
 )
 }
@@ -19,17 +20,20 @@ set_felt_map_data(
 
 \item{description}{Map description}
 
-\item{location}{Location to center map, either a sf or sfc object or a length
-2 numeric vector in the form of \code{c("lon", "lat")}}
+\item{location}{Location to center map, either a sf, sfc, or bbox object or a
+length 2 numeric vector in the form of \code{c("lon", "lat")}. To pass
+coordinates in lat/lon order, set the \code{feltr.latlon} option to \code{TRUE}
+(option defaults to \code{FALSE}). If location is \code{NULL} (default), map is
+centered on Oakland, California.}
 
 \item{zoom}{Zoom level number}
 
-\item{layer_urls}{Raster layer URLs}
+\item{layer_urls}{A character vector or list of raster layer URLs.}
 
-\item{basemap}{Basemap, string ("default" or "satellite") or a valid layer
-URL or color as hex code.}
+\item{basemap}{Basemap, string ("default" or "satellite"), a valid layer URL,
+a color name, or a color hex code.}
 }
 \description{
-Internal function for setting up map data for \code{\link[=create_felt_map]{create_felt_map()}}
+Internal function to prepare input parameters for \code{\link[=create_felt_map]{create_felt_map()}}
 }
 \keyword{internal}

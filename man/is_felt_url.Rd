@@ -3,24 +3,21 @@
 \name{is_felt_url}
 \alias{is_felt_url}
 \alias{check_felt_url}
-\title{Check Felt URLs}
+\title{Is a object a Felt URL?}
 \usage{
 is_felt_url(x)
 
-check_felt_url(
-  url,
-  message = "{.arg url} must be a valid Felt URL.",
-  ...,
-  call = caller_env()
-)
+check_felt_url(x, allow_null = FALSE, arg = caller_arg(x), call = caller_env())
 }
 \arguments{
-\item{x, url}{Object to check.}
+\item{x}{Object to check.}
 
-\item{message}{Message passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} if url is not a Felt url.}
+\item{allow_null}{If \code{TRUE}, \code{\link[=check_felt_url]{check_felt_url()}} allows a \code{NULL} input without
+an error. Defaults to \code{FALSE}.}
 
-\item{...}{Additional parameters passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} if url is not a
-Felt url.}
+\item{arg}{An argument name as a string. This argument
+will be mentioned in error messages as the input that is at the
+origin of a problem.}
 
 \item{call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be
@@ -28,5 +25,5 @@ mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
-Check Felt URLs
+Is a object a Felt URL?
 }
