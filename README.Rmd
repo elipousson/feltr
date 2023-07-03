@@ -38,12 +38,20 @@ library(feltr)
 ## basic example code
 ```
 
-You can use `read_felt()` to create an sf object with features from a map URL.
+You can use `read_felt_map()` to create an sf object with features from a map URL.
 
 ```{r read}
-site_plan <- read_felt("https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD")
+url <- "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
+
+site_plan <- read_felt_map(url)
 
 plot(site_plan)
+```
+
+`get_felt_map()` returns a list with basic information about a map (set `read = TRUE` to read map elements and layers at the same time):
+
+```{r}
+get_felt_map(url)
 ```
 
 You can also use `read_felt_raster()` (a wrapper for `rasterpic::rasterpic_img()`) to create a `SpatRaster` object from a "Image" type feature in Felt.
