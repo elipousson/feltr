@@ -2,7 +2,6 @@
 % Please edit documentation in R/read_felt.R
 \name{read_felt}
 \alias{read_felt}
-\alias{get_felt_data}
 \title{Read data from a Felt map}
 \usage{
 read_felt(
@@ -14,8 +13,6 @@ read_felt(
   rename = TRUE,
   name_repair = "check_unique"
 )
-
-get_felt_data(url, call = caller_env())
 }
 \arguments{
 \item{url}{A Felt map URL, optional if map_id is supplied.}
@@ -33,22 +30,17 @@ column names.}
 
 \item{name_repair}{Passed to repair parameter of \code{\link[vctrs:vec_as_names]{vctrs::vec_as_names()}}.
 Defaults to "check_unique".}
-
-\item{call}{The execution environment of a currently
-running function, e.g. \code{caller_env()}. The function will be
-mentioned in error messages as the source of the error. See the
-\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \value{
 A simple feature data frame or a list of the parsed JSON found
 in the "felt-data" div of a Felt map webpage.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+}
+\details{
 Read simple features from a Felt map or get data embedded in the website of a
-Felt map. \code{\link[=read_felt]{read_felt()}} is a wrapper for \code{\link[=read_felt_map]{read_felt_map()}} with a few extra
-features. \code{\link[=get_felt_data]{get_felt_data()}} returns the parsed JSON included in the body of a
-Felt map website (which includes both features and other user and layer
-metadata).
+Felt map. Superseded by \code{\link[=read_felt_map]{read_felt_map()}}.
 }
 \seealso{
 \code{\link[sf:st_read]{sf::read_sf()}}

@@ -22,37 +22,20 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
 
   if (!is_null(endpoint) || !is_null(template)) {
     req <- req_felt_template(req, endpoint = endpoint, template = template, ...)
+  } else {
+    req <- httr2::req_url_query(req, ...)
   }
 
   if (!is_null(data)) {
-    req <- httr2::req_body_json(req, data = vctrs::list_drop_empty(data))
+    if (is_list(data)) {
+      data <- vctrs::list_drop_empty(data)
+    }
+
+    req <- httr2::req_body_json(req, data = data)
   }
 
-  req <- httr2::req_auth_bearer_token(
-    req,
-    token = get_felt_token(
-      token,
-      call = call
-    )
-  )
 
-  req <- httr2::req_error(
-    req,
-    body = function(err) {
-      msg <- err[["title"]]
-
-      if (has_name(err, "detail")) {
-        msg <- c(msg, "!" = err[["detail"]])
-      }
-
-      msg
-    }
-  )
-
-  req <- httr2::req_user_agent(
-    req,
-    "rairtable (https://github.com/elipousson/feltr)"
-  )
+  req <- req_felt_auth(req, token, call)
 
   if (!perform) {
     return(req)
@@ -90,4 +73,34 @@ req_felt_template <- function(req,
     )
 
   httr2::req_template(req, template = template, ...)
+}
+
+
+#' @noRd
+req_felt_auth <- function(req, token, call) {
+  req <- httr2::req_auth_bearer_token(
+    req,
+    token = get_felt_token(
+      token,
+      call = call
+    )
+  )
+
+  req <- httr2::req_error(
+    req,
+    body = function(err) {
+      msg <- err[["title"]]
+
+      if (has_name(err, "detail")) {
+        msg <- c(msg, "!" = err[["detail"]])
+      }
+
+      msg
+    }
+  )
+
+  httr2::req_user_agent(
+    req,
+    "feltr (https://github.com/elipousson/feltr)"
+  )
 }

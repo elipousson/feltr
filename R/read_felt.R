@@ -1,10 +1,9 @@
 #' Read data from a Felt map
 #'
+#' `r lifecycle::badge('superseded')`
+#'
 #' Read simple features from a Felt map or get data embedded in the website of a
-#' Felt map. [read_felt()] is a wrapper for [read_felt_map()] with a few extra
-#' features. [get_felt_data()] returns the parsed JSON included in the body of a
-#' Felt map website (which includes both features and other user and layer
-#' metadata).
+#' Felt map. Superseded by [read_felt_map()].
 #'
 #' @inheritParams read_felt_map
 #' @param crs Coordinate reference system to return. Defaults to 3857.
@@ -30,10 +29,9 @@ read_felt <- function(url,
   features <- read_felt_map(
     url = url,
     map_id = map_id,
+    crs = crs,
     token = token
   )
-
-  features <- sf::st_transform(features, crs)
 
   if (!rename) {
     return(features)
@@ -46,41 +44,4 @@ read_felt <- function(url,
       repair = name_repair
     )
   )
-}
-
-#' @rdname read_felt
-#' @name get_felt_data
-#' @export
-get_felt_data <- function(url, call = caller_env()) {
-  url <- felt_url_build(url, type = "data", call = call)
-
-  resp <- req_felt(url, call = call)
-
-  resp_body_felt_data(resp)
-}
-
-#' @noRd
-req_felt <- function(base_url = "https://felt.com/api/v1",
-                     call = caller_env()) {
-  req <- httr2::request(base_url)
-  req <- httr2::req_user_agent(
-    req,
-    "rairtable (https://github.com/elipousson/feltr)"
-  )
-  httr2::req_perform(req, error_call = call)
-}
-
-#' @noRd
-resp_body_felt_data <- function(resp) {
-  rlang::check_installed(c("xml2", "jsonlite"))
-  body <- httr2::resp_body_html(resp)
-  # FIXME: Comments are stored in threads and users but they aren't coming
-  # through this way The divs containing comments use the role = "thread"
-  # attribute - extracting these divs from the XML may be another way to get
-  # access to the information
-  part <- xml2::xml_children(xml2::xml_find_first(body, "//div"))[1]
-  part <- xml2::xml_contents(part)
-  json <- jsonlite::parse_json(as.character(part))
-  json[["mapbox_api_token"]] <- NULL
-  json
 }
