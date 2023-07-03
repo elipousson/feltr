@@ -15,6 +15,7 @@ Imports:
     cli,
     grDevices,
     httr2,
+    lifecycle,
     rlang (>= 1.1.0),
     settoken (>= 0.1.0),
     sf,
