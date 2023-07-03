@@ -32,13 +32,11 @@ column names.}
 Defaults to "check_unique".}
 }
 \value{
-A simple feature data frame or a list of the parsed JSON found
-in the "felt-data" div of a Felt map webpage.
+A simple feature data frame.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
-}
-\details{
+
 Read simple features from a Felt map or get data embedded in the website of a
 Felt map. Superseded by \code{\link[=read_felt_map]{read_felt_map()}}.
 }

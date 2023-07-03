@@ -1,13 +1,16 @@
-#' Get Felt map data from the body of the map website
+#' Get Felt map data from the body of a map website
 #'
 #' @description
 #' `r lifecycle::badge("experimental")`
 #'
 #' [get_felt_data()] returns the parsed JSON included in the body of the HTML
 #' for a Felt map website (which includes both features and other user and layer
-#' metadata). This data can be used to supplement the Public API.
+#' metadata). This data can be used to supplement the Public API and may be
+#' deprecated as the API develops.
 #'
 #' @inheritParams read_felt_map
+#' @returns A list of the parsed JSON found in the "felt-data" div of a Felt map
+#'   webpage.
 #' @export
 get_felt_data <- function(url = NULL,
                           map_id = NULL,

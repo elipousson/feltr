@@ -1,5 +1,6 @@
 #' Read data from a Felt map
 #'
+#' @description
 #' `r lifecycle::badge('superseded')`
 #'
 #' Read simple features from a Felt map or get data embedded in the website of a
@@ -12,12 +13,10 @@
 #' @param name_repair Passed to repair parameter of [vctrs::vec_as_names()].
 #'   Defaults to "check_unique".
 #' @inheritParams rlang::args_error_context
-#' @returns A simple feature data frame or a list of the parsed JSON found
-#'   in the "felt-data" div of a Felt map webpage.
+#' @returns A simple feature data frame.
 #' @seealso [sf::read_sf()]
 #' @rdname read_felt
 #' @export
-#' @importFrom sf read_sf
 #' @importFrom rlang set_names
 read_felt <- function(url,
                       map_id = NULL,
