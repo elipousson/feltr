@@ -62,7 +62,8 @@ get_felt_map() returns a list of map details and optionally (if read = TRUE) add
 <span>  <span class="va">...</span>,</span>
 <span>  read <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  token <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  token <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">create_felt_map</span><span class="op">(</span></span>
@@ -110,6 +111,13 @@ list of Felt layers to the returned list of map attributes. Defaults to
 <dt>simplifyVector</dt>
 <dd><p>Should JSON arrays containing only primitives (i.e.
 booleans, numbers, and strings) be caused to atomic vectors?</p></dd>
+
+
+<dt>call</dt>
+<dd><p>The execution environment of a currently
+running function, e.g. <code>caller_env()</code>. The function will be
+mentioned in error messages as the source of the error. See the
+<code>call</code> argument of <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code> for more information.</p></dd>
 
 
 <dt>title</dt>
