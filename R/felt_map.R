@@ -73,13 +73,15 @@ get_felt_map <- function(url = NULL,
                          ...,
                          read = FALSE,
                          simplifyVector = TRUE,
-                         token = NULL) {
+                         token = NULL,
+                         call = caller_env()) {
   map_id <- map_id %||% felt_url_parse(url)
 
   resp <- request_felt(
     endpoint = "get map",
     map_id = map_id,
-    token = token
+    token = token,
+    call = call
   )
 
   data <- httr2::resp_body_json(resp, simplifyVector = simplifyVector)[["data"]]
@@ -219,9 +221,9 @@ set_felt_map_basemap <- function(basemap = c("default", "satellite"),
   check_string(basemap, allow_empty = FALSE, call = call)
 
   if (is_url(basemap)) {
+    # TODO: Add validation for the URL
     return(basemap)
   }
-
 
   if (basemap %in% grDevices::colors()) {
     basemap <- grDevices::rgb(
