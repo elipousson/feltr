@@ -89,16 +89,39 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/elipousson/feltr/" class="external-link">feltr</a></span><span class="op">)</span></span>
 <span><span class="co">## basic example code</span></span></code></pre></div>
-<p>You can use <code><a href="reference/read_felt.html">read_felt()</a></code> to create an sf object with features from a map URL.</p>
+<p>You can use <code><a href="reference/read_felt_map.html">read_felt_map()</a></code> to create an sf object with features from a map URL.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">site_plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_felt.html">read_felt</a></span><span class="op">(</span><span class="st">"https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"</span></span>
+<span></span>
+<span><span class="va">site_plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_felt_map.html">read_felt_map</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">site_plan</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: plotting the first 9 out of 22 attributes; use max.plot = 22 to plot</span></span>
 <span><span class="co">#&gt; all</span></span></code></pre></div>
 <p><img src="reference/figures/README-read-1.png" width="100%"></p>
-<p>You can also use <code><a href="reference/read_felt_raster.html">read_felt_raster()</a></code> (a wrapper for <code><a href="https://dieghernan.github.io/rasterpic/reference/rasterpic_img.html" class="external-link">rasterpic::rasterpic_img()</a></code>) to create a <code>SpatRaster</code> object from a “Image” type feature in Felt.</p>
+<p><code><a href="reference/read_felt_map.html">get_felt_map()</a></code> returns a list with basic information about a map (set <code>read = TRUE</code> to read map elements and layers at the same time):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/read_felt_map.html">get_felt_map</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $attributes</span></span>
+<span><span class="co">#&gt; $attributes$title</span></span>
+<span><span class="co">#&gt; [1] "Site Plan Example"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $attributes$url</span></span>
+<span><span class="co">#&gt; [1] "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $id</span></span>
+<span><span class="co">#&gt; [1] "PGTipS2mT8CYBIVlyAm9BkD"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $links</span></span>
+<span><span class="co">#&gt; $links$self</span></span>
+<span><span class="co">#&gt; [1] "https://felt.com/api/v1/maps/PGTipS2mT8CYBIVlyAm9BkD"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $type</span></span>
+<span><span class="co">#&gt; [1] "map"</span></span></code></pre></div>
+<p>You can also use <code><a href="reference/read_felt_raster.html">read_felt_raster()</a></code> (a wrapper for <code><a href="https://dieghernan.github.io/rasterpic/reference/rasterpic_img.html" class="external-link">rasterpic::rasterpic_img()</a></code>) to create a <code>SpatRaster</code> object from a “Image” type feature in Felt.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">image_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_felt_raster.html">read_felt_raster</a></span><span class="op">(</span></span>
 <span>  <span class="st">"https://felt.com/map/feltr-sample-map-read-felt-raster-oiinodTbT79BEueYdGp1aND"</span>,</span>
 <span>  <span class="st">"https://tile.loc.gov/image-services/iiif/service:gmd:gmd370:g3700:g3700:ct003955/full/pct:12.5/0/default.jpg"</span></span>
@@ -110,9 +133,9 @@
 <span><span class="co">#&gt; resolution  : 6439.813, 6439.813  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) </span></span>
-<span><span class="co">#&gt; source      : filebe827f397dd1.jpg </span></span>
+<span><span class="co">#&gt; source      : file9ac478d06d6e.jpg </span></span>
 <span><span class="co">#&gt; colors RGB  : 1, 2, 3 </span></span>
-<span><span class="co">#&gt; names       : filebe827f397dd1_1, filebe827f397dd1_2, filebe827f397dd1_3</span></span></code></pre></div>
+<span><span class="co">#&gt; names       : file9ac478d06d6e_1, file9ac478d06d6e_2, file9ac478d06d6e_3</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
