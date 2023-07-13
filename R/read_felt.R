@@ -26,8 +26,7 @@ read_felt <- function(url,
                       rename = TRUE,
                       name_repair = "check_unique") {
   features <- read_felt_map(
-    url = url,
-    map_id = map_id,
+    map_id = map_id %||% url,
     crs = crs,
     token = token
   )

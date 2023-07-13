@@ -6,27 +6,14 @@
 \alias{read_felt_layers}
 \title{Read layers from a Felt map, delete a layer, or create a new layer from a URL}
 \usage{
-create_felt_layer(url = NULL, map_id = NULL, layer, name = NULL, token = NULL)
+create_felt_layer(map_id, layer, name = NULL, token = NULL)
 
-delete_felt_layer(
-  url = NULL,
-  map_id = NULL,
-  layer_id = NULL,
-  safely = TRUE,
-  token = NULL
-)
+delete_felt_layer(map_id, layer_id = NULL, safely = TRUE, token = NULL)
 
-read_felt_layers(
-  url = NULL,
-  map_id = NULL,
-  simplifyVector = TRUE,
-  token = NULL
-)
+read_felt_layers(map_id, simplifyVector = TRUE, token = NULL)
 }
 \arguments{
-\item{url}{A Felt map URL, optional if map_id is supplied.}
-
-\item{map_id}{A Felt map ID, optional if url is supplied.}
+\item{map_id}{A Felt map URL or map ID.}
 
 \item{layer}{Required. Layer source URL, either a supported static file or a
 URL supported by Felt. See

@@ -4,12 +4,10 @@
 \alias{get_felt_data}
 \title{Get Felt map data from the body of a map website}
 \usage{
-get_felt_data(url = NULL, map_id = NULL, token = NULL, call = caller_env())
+get_felt_data(map_id, token = NULL, call = caller_env())
 }
 \arguments{
-\item{url}{A Felt map URL, optional if map_id is supplied.}
-
-\item{map_id}{A Felt map ID, optional if url is supplied.}
+\item{map_id}{A Felt map URL or map ID.}
 
 \item{token}{Felt personal access token}
 

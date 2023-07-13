@@ -14,36 +14,43 @@
 #' create_felt_layer()
 #'
 #' @export
-create_felt_layer <- function(url = NULL,
-                              map_id = NULL,
+create_felt_layer <- function(map_id,
                               layer,
                               name = NULL,
                               token = NULL) {
-  map_id <- map_id %||% felt_url_parse(url)
-  map_url <- felt_url_build(map_id)
+  map_url <- felt_map_url_build(map_id)
 
   check_string(layer, allow_empty = FALSE)
 
-  if (!is_url(layer)) {
+  if (is_url(layer)) {
+    resp <- request_felt(
+      endpoint = "import url",
+      data = list(
+        layer_url = layer,
+        name = name
+      ),
+      map_id = map_id,
+      token = token
+    )
+
+    data <- httr2::resp_body_json(resp)[["data"]]
+  } else if (file.exists(layer)) {
     cli_abort(
       c(
         "{.arg layer} must be a URL.",
         "Support for local files will be added in the future."
       )
     )
+
+    resp <- request_felt(
+      endpoint = "create layer",
+      map_id = map_id,
+      data = list(
+        file_names = list(basename(layer)),
+        name = name
+      )
+    )
   }
-
-  resp <- request_felt(
-    endpoint = "import url",
-    data = list(
-      layer_url = layer,
-      name = name
-    ),
-    map_id = map_id,
-    token = token
-  )
-
-  data <- httr2::resp_body_json(resp)[["data"]]
 
   cli_alert_success(
     "Layer {.val {data$attributes$name}} created at {.url {map_url}}"
@@ -57,13 +64,11 @@ create_felt_layer <- function(url = NULL,
 #' @param layer_id Layer ID. Layer IDs for a map can be listed using
 #'   [read_felt_layers()]
 #' @export
-delete_felt_layer <- function(url = NULL,
-                              map_id = NULL,
+delete_felt_layer <- function(map_id,
                               layer_id = NULL,
                               safely = TRUE,
                               token = NULL) {
-  map_id <- map_id %||% felt_url_parse(url)
-  map_url <- felt_url_build(map_id)
+  map_url <- felt_map_url_build(map_id)
 
   if (is_null(layer_id) && is_interactive()) {
     layers <- read_felt_layers(map_id = map_id, token = token)
@@ -115,12 +120,9 @@ delete_felt_layer <- function(url = NULL,
 #' @rdname create_felt_layer
 #' @inheritParams httr2::resp_body_json
 #' @export
-read_felt_layers <- function(url = NULL,
-                             map_id = NULL,
+read_felt_layers <- function(map_id,
                              simplifyVector = TRUE,
                              token = NULL) {
-  map_id <- map_id %||% felt_url_parse(url)
-
   resp <- request_felt(
     endpoint = "read layers",
     map_id = map_id,

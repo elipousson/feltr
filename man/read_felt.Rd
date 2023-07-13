@@ -15,9 +15,7 @@ read_felt(
 )
 }
 \arguments{
-\item{url}{A Felt map URL, optional if map_id is supplied.}
-
-\item{map_id}{A Felt map ID, optional if url is supplied.}
+\item{map_id}{A Felt map URL or map ID.}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 

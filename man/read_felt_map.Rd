@@ -7,11 +7,10 @@
 \alias{delete_felt_map}
 \title{Read Felt map elements, create a Felt map from a URL, or delete a Felt map}
 \usage{
-read_felt_map(url = NULL, map_id = NULL, ..., crs = NULL, token = NULL)
+read_felt_map(map_id, ..., crs = NULL, token = NULL)
 
 get_felt_map(
-  url = NULL,
-  map_id = NULL,
+  map_id,
   ...,
   read = FALSE,
   simplifyVector = TRUE,
@@ -29,12 +28,10 @@ create_felt_map(
   token = NULL
 )
 
-delete_felt_map(url = NULL, map_id = NULL, safely = TRUE, token = NULL)
+delete_felt_map(map_id, safely = TRUE, token = NULL)
 }
 \arguments{
-\item{url}{A Felt map URL, optional if map_id is supplied.}
-
-\item{map_id}{A Felt map ID, optional if url is supplied.}
+\item{map_id}{A Felt map URL or map ID.}
 
 \item{...}{Additional parameters passed to \code{\link[sf:st_read]{sf::read_sf()}}.}
 

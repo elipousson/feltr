@@ -42,8 +42,11 @@ felt_url_parse <- function(url, call = caller_env()) {
 #' Build Felt URL
 #'
 #' @noRd
-felt_url_build <- function(..., base_url = "https://felt.com", path = "map") {
-  paste0(c(base_url, path, ...), collapse = "/")
+felt_map_url_build <- function(map_id = NULL, base_url = "https://felt.com", path = "map", call = caller_env()) {
+  if (is_url(map_id)) {
+    map_id <- felt_url_parse(map_id, call = call)
+  }
+  paste0(c(base_url, path, map_id), collapse = "/")
 }
 
 #' @noRd

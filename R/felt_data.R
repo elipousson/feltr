@@ -12,17 +12,16 @@
 #' @returns A list of the parsed JSON found in the "felt-data" div of a Felt map
 #'   webpage.
 #' @export
-get_felt_data <- function(url = NULL,
-                          map_id = NULL,
+get_felt_data <- function(map_id,
                           token = NULL,
                           call = caller_env()) {
-  map_id <- map_id %||% felt_url_parse(url, call = call)
+  map_id <- set_map_id(map_id, call = call)
 
-  map_url <- felt_url_build(url)
+  map_url <- felt_map_url_build(map_id, call = call)
 
   req <- req_felt_auth(httr2::request(map_url), token = token, call = call)
 
-  resp <- httr2::req_perform(req)
+  resp <- httr2::req_perform(req, error_call = call)
 
   resp_body_felt_data_div(resp)
 }

@@ -4,12 +4,10 @@
 #' [get_felt_map()] returns a list of map details and optionally (if `read =
 #' TRUE`) adds the map elements and layer list as elements in the list.
 #'
-#' @param url A Felt map URL, optional if map_id is supplied.
-#' @param map_id A Felt map ID, optional if url is supplied.
+#' @inheritParams request_felt
 #' @param ... Additional parameters passed to [sf::read_sf()].
 #' @param crs Coordinate reference system. Passed to [sf::st_transform()] if
 #'   supplied.
-#' @inheritParams request_felt
 #' @return [read_felt_map()] returns a sf object, [create_felt_map()] invisibly
 #'   returns a list of attributes for the created map, and [delete_felt_map()]
 #'   does not return anything.
@@ -32,13 +30,10 @@
 #' @importFrom sf read_sf st_transform
 #' @importFrom httr2 resp_body_string
 #' @importFrom cli cli_alert_danger
-read_felt_map <- function(url = NULL,
-                          map_id = NULL,
+read_felt_map <- function(map_id,
                           ...,
                           crs = NULL,
                           token = NULL) {
-  map_id <- map_id %||% felt_url_parse(url)
-
   resp <- request_felt(
     endpoint = "read map",
     map_id = map_id,
@@ -53,7 +48,7 @@ read_felt_map <- function(url = NULL,
 
   if (nrow(data) == 0) {
     cli::cli_alert_danger(
-      "No elements found for Felt map at {.url {felt_url_build(map_id)}}"
+      "No elements found for Felt map at {.url {felt_map_url_build(map_id)}}"
       )
   }
 
@@ -68,15 +63,12 @@ read_felt_map <- function(url = NULL,
 #' @inheritParams httr2::resp_body_json
 #' @export
 #' @importFrom httr2 resp_body_json
-get_felt_map <- function(url = NULL,
-                         map_id = NULL,
+get_felt_map <- function(map_id,
                          ...,
                          read = FALSE,
                          simplifyVector = TRUE,
                          token = NULL,
                          call = caller_env()) {
-  map_id <- map_id %||% felt_url_parse(url)
-
   resp <- request_felt(
     endpoint = "get map",
     map_id = map_id,
@@ -287,13 +279,11 @@ set_felt_map_location <- function(location,
 #' @param safely If `TRUE` (default), check for user confirmation before
 #'   deleting a Felt map. If `FALSE`, delete map without checking.
 #' @export
-delete_felt_map <- function(url = NULL,
-                            map_id = NULL,
+delete_felt_map <- function(map_id,
                             safely = TRUE,
                             token = NULL) {
-  map_id <- map_id %||% felt_url_parse(url)
-  map_url <- url %||% felt_url_build(map_id)
-  map_data <- get_felt_map(map_url)
+  map_url <- felt_map_url_build(map_id)
+  map_data <- get_felt_map(map_id)
   map_title <- map_data[["attributes"]][["title"]]
 
   safety_check(
@@ -306,8 +296,8 @@ delete_felt_map <- function(url = NULL,
 
   request_felt(
     endpoint = "delete map",
-    token = token,
-    map_id = map_id
+    map_id = map_id,
+    token = token
   )
 
   cli_alert_success(
