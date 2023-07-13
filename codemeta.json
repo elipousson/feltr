@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/elipousson/feltr/",
   "issueTracker": "https://github.com/elipousson/feltr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.1.9001",
+  "version": "0.1.1.9002",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -217,7 +217,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "361.31KB",
+  "fileSize": "361.417KB",
   "releaseNotes": "https://github.com/elipousson/feltr/blob/master/NEWS.md",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
