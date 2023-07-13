@@ -58,7 +58,12 @@ from a URL. Note that the layers do not include data.</p>
 <span></span>
 <span><span class="fu">delete_felt_layer</span><span class="op">(</span><span class="va">map_id</span>, layer_id <span class="op">=</span> <span class="cn">NULL</span>, safely <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">read_felt_layers</span><span class="op">(</span><span class="va">map_id</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">read_felt_layers</span><span class="op">(</span></span>
+<span>  <span class="va">map_id</span>,</span>
+<span>  simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  token <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -95,13 +100,20 @@ deleting a Felt map. If <code>FALSE</code>, delete map without checking.</p></dd
 <dd><p>Should JSON arrays containing only primitives (i.e.
 booleans, numbers, and strings) be caused to atomic vectors?</p></dd>
 
+
+<dt>call</dt>
+<dd><p>The execution environment of a currently
+running function, e.g. <code>caller_env()</code>. The function will be
+mentioned in error messages as the source of the error. See the
+<code>call</code> argument of <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code> for more information.</p></dd>
+
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create_felt_layer</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in create_felt_layer():</span> argument "map_id" is missing, with no default</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in create_felt_layer():</span> `layer` must be a single string, not absent.</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
