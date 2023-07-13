@@ -65,3 +65,4 @@ image_map <- read_felt_raster(
 image_map
 ```
 
+For more information on the Felt Public API check out the guide to [Getting Started with the Felt API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa) or the [Felt Public API reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad).

@@ -87,7 +87,13 @@ image_map
 #> resolution  : 6439.813, 6439.813  (x, y)
 #> extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)
 #> coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-#> source      : file9ac478d06d6e.jpg 
+#> source      : file3fd967c7ed9f.jpg 
 #> colors RGB  : 1, 2, 3 
-#> names       : file9ac478d06d6e_1, file9ac478d06d6e_2, file9ac478d06d6e_3
+#> names       : file3fd967c7ed9f_1, file3fd967c7ed9f_2, file3fd967c7ed9f_3
 ```
+
+For more information on the Felt Public API check out the guide to
+[Getting Started with the Felt
+API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa)
+or the [Felt Public API
+reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad).
