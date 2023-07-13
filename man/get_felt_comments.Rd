@@ -19,7 +19,8 @@ get_felt_comments(
 
 \item{geometry}{If \code{TRUE}, return a \code{sf} object. Default: \code{TRUE}}
 
-\item{crs}{Coordinated reference system to return (if geometry is TRUE), Default: \code{NULL}}
+\item{crs}{Coordinated reference system to return (if geometry is TRUE),
+Default: \code{NULL}}
 
 \item{token}{Felt personal access token}
 }
@@ -30,5 +31,6 @@ A data frame or simple feature object with a list column of comments.
 Get comments from a Felt map
 }
 \details{
-API documentation \url{https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48}
+API documentation
+\url{https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48}
 }

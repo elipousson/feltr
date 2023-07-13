@@ -11,7 +11,7 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
-#   The above copyright notice and this permission notice shall be included in all
+# The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -34,6 +34,6 @@
 #'   \item{`version`}{Version number}
 #'   \item{`keywords`}{Keywords}
 #'   \item{`alias`}{Alias}
-#'}
+#' }
 #' @source <https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/5/native.json>
 "emojis_reference"

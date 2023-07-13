@@ -48,11 +48,11 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
 #' @name req_felt_template
 req_felt_template <- function(req,
                               endpoint = c(
-                                "read profile", "create map", "get map",  "read map",
-                                "delete map", "get comments", "read layers",
-                                "create layer", "update layer", "finish layer",
-                                "import url", "delete layer", "get layer style",
-                                "update layer style"
+                                "read profile", "create map", "get map",
+                                "read map", "delete map", "get comments",
+                                "read layers", "create layer", "update layer",
+                                "finish layer", "import url", "delete layer",
+                                "get layer style", "update layer style"
                               ),
                               template = NULL,
                               map_id = NULL,

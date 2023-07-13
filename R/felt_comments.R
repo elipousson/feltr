@@ -3,9 +3,11 @@
 #' @inheritParams request_felt
 #' @param simplifyVector Passed to [httr2::resp_body_json()], Default: `TRUE`
 #' @param geometry If `TRUE`, return a `sf` object. Default: `TRUE`
-#' @param crs Coordinated reference system to return (if geometry is TRUE), Default: `NULL`
+#' @param crs Coordinated reference system to return (if geometry is TRUE),
+#'   Default: `NULL`
 #' @return A data frame or simple feature object with a list column of comments.
-#' @details API documentation <https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48>
+#' @details API documentation
+#'   <https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48>
 #' @rdname get_felt_comments
 #' @export
 #' @importFrom httr2 resp_body_json
@@ -15,7 +17,6 @@ get_felt_comments <- function(map_id,
                               geometry = TRUE,
                               crs = NULL,
                               token = NULL) {
-
   resp <- request_felt(
     endpoint = "get comments",
     map_id = map_id,

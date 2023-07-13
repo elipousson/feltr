@@ -49,7 +49,7 @@ read_felt_map <- function(map_id,
   if (nrow(data) == 0) {
     cli::cli_alert_danger(
       "No elements found for Felt map at {.url {felt_map_url_build(map_id)}}"
-      )
+    )
   }
 
   data
@@ -221,7 +221,7 @@ set_felt_map_basemap <- function(basemap = c("default", "satellite"),
     basemap <- grDevices::rgb(
       t(grDevices::col2rgb(basemap)),
       maxColorValue = 255
-      )
+    )
 
     basemap <- tolower(basemap)
   }

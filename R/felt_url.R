@@ -24,7 +24,7 @@ check_felt_url <- function(x,
 
   stop_input_type(
     x,
-    what =  "a valid Felt URL",
+    what = "a valid Felt URL",
     arg = arg,
     call = call
   )
@@ -42,7 +42,10 @@ felt_url_parse <- function(url, call = caller_env()) {
 #' Build Felt URL
 #'
 #' @noRd
-felt_map_url_build <- function(map_id = NULL, base_url = "https://felt.com", path = "map", call = caller_env()) {
+felt_map_url_build <- function(map_id = NULL,
+                               base_url = "https://felt.com",
+                               path = "map",
+                               call = caller_env()) {
   if (is_url(map_id)) {
     map_id <- felt_url_parse(map_id, call = call)
   }
@@ -64,7 +67,7 @@ check_url <- function(x,
 
   stop_input_type(
     x,
-    what =  "a valid URL",
+    what = "a valid URL",
     arg = arg,
     call = call
   )
