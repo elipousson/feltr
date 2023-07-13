@@ -12,7 +12,7 @@ from a URL. Note that the layers do not include data."><meta property="og:image"
     
     <a class="navbar-brand me-2" href="../index.html">feltr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,32 +54,17 @@ from a URL. Note that the layers do not include data.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_felt_layer</span><span class="op">(</span>url <span class="op">=</span> <span class="cn">NULL</span>, map_id <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">layer</span>, name <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_felt_layer</span><span class="op">(</span><span class="va">map_id</span>, <span class="va">layer</span>, name <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">delete_felt_layer</span><span class="op">(</span></span>
-<span>  url <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  map_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  layer_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  safely <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  token <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
+<span><span class="fu">delete_felt_layer</span><span class="op">(</span><span class="va">map_id</span>, layer_id <span class="op">=</span> <span class="cn">NULL</span>, safely <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">read_felt_layers</span><span class="op">(</span></span>
-<span>  url <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  map_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  token <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">read_felt_layers</span><span class="op">(</span><span class="va">map_id</span>, simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>url</dt>
-<dd><p>A Felt map URL, optional if map_id is supplied.</p></dd>
-
-
-<dt>map_id</dt>
-<dd><p>A Felt map ID, optional if url is supplied.</p></dd>
+    <dl><dt>map_id</dt>
+<dd><p>A Felt map URL or map ID.</p></dd>
 
 
 <dt>layer</dt>
@@ -116,7 +101,7 @@ booleans, numbers, and strings) be caused to atomic vectors?</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create_felt_layer</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (is_url(x)) {    return(invisible(NULL))}:</span> argument is of length zero</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in create_felt_layer():</span> argument "map_id" is missing, with no default</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">feltr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,17 @@
 <span>  token <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  perform <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">req_felt_template</span><span class="op">(</span></span>
+<span>  <span class="va">req</span>,</span>
+<span>  endpoint <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"read profile"</span>, <span class="st">"create map"</span>, <span class="st">"get map"</span>, <span class="st">"read map"</span>, <span class="st">"delete map"</span>,</span>
+<span>    <span class="st">"get comments"</span>, <span class="st">"read layers"</span>, <span class="st">"create layer"</span>, <span class="st">"update layer"</span>, <span class="st">"finish layer"</span>,</span>
+<span>    <span class="st">"import url"</span>, <span class="st">"delete layer"</span>, <span class="st">"get layer style"</span>, <span class="st">"update layer style"</span><span class="op">)</span>,</span>
+<span>  template <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  map_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +94,14 @@
 running function, e.g. <code>caller_env()</code>. The function will be
 mentioned in error messages as the source of the error. See the
 <code>call</code> argument of <code><a href="https://rlang.r-lib.org/reference/abort.html" class="external-link">abort()</a></code> for more information.</p></dd>
+
+
+<dt>req</dt>
+<dd><p>A <a href="https://httr2.r-lib.org/reference/request.html" class="external-link">request</a>.</p></dd>
+
+
+<dt>map_id</dt>
+<dd><p>A Felt map URL or map ID.</p></dd>
 
 </dl></div>
 

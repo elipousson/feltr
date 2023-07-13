@@ -12,7 +12,7 @@ get_felt_map() returns a list of map details and optionally (if read = TRUE) add
     
     <a class="navbar-brand me-2" href="../index.html">feltr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,11 +54,10 @@ get_felt_map() returns a list of map details and optionally (if read = TRUE) add
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt_map</span><span class="op">(</span>url <span class="op">=</span> <span class="cn">NULL</span>, map_id <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, crs <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_felt_map</span><span class="op">(</span><span class="va">map_id</span>, <span class="va">...</span>, crs <span class="op">=</span> <span class="cn">NULL</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">get_felt_map</span><span class="op">(</span></span>
-<span>  url <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  map_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">map_id</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  read <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  simplifyVector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -76,17 +75,13 @@ get_felt_map() returns a list of map details and optionally (if read = TRUE) add
 <span>  token <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">delete_felt_map</span><span class="op">(</span>url <span class="op">=</span> <span class="cn">NULL</span>, map_id <span class="op">=</span> <span class="cn">NULL</span>, safely <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">delete_felt_map</span><span class="op">(</span><span class="va">map_id</span>, safely <span class="op">=</span> <span class="cn">TRUE</span>, token <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>url</dt>
-<dd><p>A Felt map URL, optional if map_id is supplied.</p></dd>
-
-
-<dt>map_id</dt>
-<dd><p>A Felt map ID, optional if url is supplied.</p></dd>
+    <dl><dt>map_id</dt>
+<dd><p>A Felt map URL or map ID.</p></dd>
 
 
 <dt>...</dt>
