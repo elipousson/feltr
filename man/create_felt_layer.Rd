@@ -10,7 +10,12 @@ create_felt_layer(map_id, layer, name = NULL, token = NULL)
 
 delete_felt_layer(map_id, layer_id = NULL, safely = TRUE, token = NULL)
 
-read_felt_layers(map_id, simplifyVector = TRUE, token = NULL)
+read_felt_layers(
+  map_id,
+  simplifyVector = TRUE,
+  token = NULL,
+  call = caller_env()
+)
 }
 \arguments{
 \item{map_id}{A Felt map URL or map ID.}
@@ -31,6 +36,11 @@ deleting a Felt map. If \code{FALSE}, delete map without checking.}
 
 \item{simplifyVector}{Should JSON arrays containing only primitives (i.e.
 booleans, numbers, and strings) be caused to atomic vectors?}
+
+\item{call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
 Read layers from a Felt map, delete a single layer, or create a new layer

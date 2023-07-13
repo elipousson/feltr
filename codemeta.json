@@ -8,13 +8,19 @@
   "codeRepository": "https://github.com/elipousson/feltr/",
   "issueTracker": "https://github.com/elipousson/feltr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.1",
+  "version": "0.1.1.9001",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.3.0 (2023-04-21)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -69,18 +75,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rasterpic",
       "name": "rasterpic",
       "provider": {
@@ -90,6 +84,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rasterpic"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RcppSimdJson",
+      "name": "RcppSimdJson",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=RcppSimdJson"
     },
     {
       "@type": "SoftwareApplication",
@@ -149,6 +155,18 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "lifecycle",
+      "name": "lifecycle",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lifecycle"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
       "version": ">= 1.1.0",
@@ -160,14 +178,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "settoken",
       "name": "settoken",
       "version": ">= 0.1.0",
       "sameAs": "https://github.com/elipousson/settoken"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -179,7 +197,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "vctrs",
       "name": "vctrs",
@@ -191,7 +209,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=vctrs"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
@@ -199,7 +217,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "336.954KB",
+  "fileSize": "361.31KB",
   "releaseNotes": "https://github.com/elipousson/feltr/blob/master/NEWS.md",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",

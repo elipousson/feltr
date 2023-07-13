@@ -23,8 +23,8 @@ Imports:
 Suggests: 
     covr,
     httptest2,
-    jsonlite,
     rasterpic,
+    RcppSimdJson,
     testthat (>= 3.0.0),
     xml2
 Config/testthat/edition: 3

@@ -28,7 +28,7 @@ get_felt_data <- function(map_id,
 
 #' @noRd
 resp_body_felt_data_div <- function(resp) {
-  rlang::check_installed(c("xml2", "jsonlite"))
+  rlang::check_installed(c("xml2", "RcppSimdJson"))
   body <- httr2::resp_body_html(resp)
 
   # FIXME: Comments are stored in threads and users but they aren't coming
@@ -38,7 +38,7 @@ resp_body_felt_data_div <- function(resp) {
   part <- xml2::xml_children(xml2::xml_find_first(body, "//div"))[1]
   part <- xml2::xml_contents(part)
 
-  json <- jsonlite::parse_json(as.character(part))
+  json <- RcppSimdJson::fparse(as.character(part))
   json[["mapbox_api_token"]] <- NULL
 
   json
