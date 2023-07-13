@@ -34,7 +34,6 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
     req <- httr2::req_body_json(req, data = data)
   }
 
-
   req <- req_felt_auth(req, token, call)
 
   if (!perform) {
@@ -44,35 +43,48 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
   httr2::req_perform(req, error_call = call)
 }
 
-#' @noRd
+#' @param map_id A Felt map URL or map ID.
+#' @rdname request_felt
+#' @name req_felt_template
 req_felt_template <- function(req,
                               endpoint = c(
-                                "read profile", "read map", "get map", "create map",
-                                "delete map", "read layers", "create layer",
-                                "finish layer", "import url", "delete layer"
+                                "read profile", "create map", "get map",  "read map",
+                                "delete map", "get comments", "read layers",
+                                "create layer", "update layer", "finish layer",
+                                "import url", "delete layer", "get layer style",
+                                "update layer style"
                               ),
                               template = NULL,
+                              map_id = NULL,
                               ...,
                               call = rlang::caller_env()) {
   if (!is_null(endpoint)) {
     endpoint <- rlang::arg_match(endpoint, error_call = call)
   }
 
+  if (!is_null(map_id)) {
+    map_id <- set_map_id(map_id, call = call)
+  }
+
   template <- template %||%
     switch(endpoint,
       "read profile" = "/user",
+      "create map" = "/maps",
       "get map" = "/maps/{map_id}",
       "read map" = "/maps/{map_id}/elements",
-      "create map" = "/maps",
       "delete map" = "DELETE /maps/{map_id}",
+      "get comments" = "/maps/{map_id}/comments/export",
       "read layers" = "/maps/{map_id}/layers",
       "create layer" = "/maps/{map_id}/layers",
-      "finish layer" = "/map/{map_id}/layers/{layer_id}/finish_upload",
+      "update layer" = "PATCH /maps/{map_id}/layers/{layer_id}",
+      "finish layer" = "/maps/{map_id}/layers/{layer_id}/finish_upload",
       "import url" = "/maps/{map_id}/layers/url_import",
-      "delete layer" = "DELETE /maps/{map_id}/layers/{layer_id}"
+      "delete layer" = "DELETE /maps/{map_id}/layers/{layer_id}",
+      "get layer style" = "/maps/{map_id}/layers/{layer_id}/style",
+      "update layer style" = "PATCH /maps/{map_id}/layers/{layer_id}/style"
     )
 
-  httr2::req_template(req, template = template, ...)
+  httr2::req_template(req, template = template, map_id = map_id, ...)
 }
 
 
@@ -103,4 +115,23 @@ req_felt_auth <- function(req, token, call) {
     req,
     "feltr (https://github.com/elipousson/feltr)"
   )
+}
+
+#' Set map ID
+#'
+#' @noRd
+set_map_id <- function(map_id, call = caller_env()) {
+  if (is_url(map_id)) {
+    return(felt_url_parse(map_id, call = call))
+  }
+
+  check_string(map_id, allow_empty = FALSE, call = call)
+
+  map_id
+}
+
+#' @noRd
+#' @importFrom httr2 req_url_query
+req_url_exec_query <- function(req, params, ..., .env = caller_env()) {
+  exec(httr2::req_url_query, req, !!!params, ..., .env = .env)
 }

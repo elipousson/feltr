@@ -2,6 +2,7 @@
 % Please edit documentation in R/request_felt.R
 \name{request_felt}
 \alias{request_felt}
+\alias{req_felt_template}
 \title{Build and perform a request for the Felt API}
 \usage{
 request_felt(
@@ -13,6 +14,17 @@ request_felt(
   token = NULL,
   perform = TRUE,
   call = caller_env()
+)
+
+req_felt_template(
+  req,
+  endpoint = c("read profile", "create map", "get map", "read map", "delete map",
+    "get comments", "read layers", "create layer", "update layer", "finish layer",
+    "import url", "delete layer", "get layer style", "update layer style"),
+  template = NULL,
+  map_id = NULL,
+  ...,
+  call = rlang::caller_env()
 )
 }
 \arguments{
@@ -27,6 +39,10 @@ request_felt(
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+
+\item{req}{A \link[httr2]{request}.}
+
+\item{map_id}{A Felt map URL or map ID.}
 }
 \description{
 An internal function to help build and perform a request for the Felt API.
