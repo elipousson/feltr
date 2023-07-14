@@ -28,7 +28,6 @@ string_extract <- function(string, pattern, perl = TRUE) {
   match
 }
 
-
 #' Check if user, confirm action before proceeding
 #'
 #' Adapted from rairtable package
@@ -106,4 +105,20 @@ cli_menu <- function(choices,
 
     choice <- cli_ask(prompt = prompt, .envir = .envir)
   }
+}
+
+#' Combine list elements into a single data structure
+#'
+#' From [purrr::list_rbind()]
+#'
+#' @noRd
+#' @importFrom rlang zap current_env
+#' @importFrom vctrs vec_rbind
+list_rbind <- function(x, names_to = zap(), ptype = NULL) {
+  vctrs::vec_rbind(
+    !!!x,
+    .names_to = names_to,
+    .ptype = ptype,
+    .error_call = current_env()
+  )
 }

@@ -6,31 +6,40 @@
 \usage{
 get_felt_comments(
   map_id,
-  simplifyVector = TRUE,
+  flatten = TRUE,
   geometry = TRUE,
   crs = NULL,
+  simplifyVector = TRUE,
   token = NULL
 )
 }
 \arguments{
 \item{map_id}{A Felt map URL or map ID.}
 
-\item{simplifyVector}{Passed to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, Default: \code{TRUE}}
+\item{flatten}{If \code{TRUE} (default) and comments do not include replies,
+flatten the structure of the results so each row contains a comment and a
+location. If \code{FALSE}, comments are included in a list column of data
+frames.}
 
-\item{geometry}{If \code{TRUE}, return a \code{sf} object. Default: \code{TRUE}}
+\item{geometry}{If \code{TRUE} (default), return a \code{sf} object. If \code{FALSE}, return
+a data frame.}
 
-\item{crs}{Coordinated reference system to return (if geometry is TRUE),
+\item{crs}{Coordinate reference system to return (if geometry is \code{TRUE}),
 Default: \code{NULL}}
+
+\item{simplifyVector}{Passed to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, Default: \code{TRUE}}
 
 \item{token}{Felt personal access token}
 }
 \value{
-A data frame or simple feature object with a list column of comments.
+A data frame or simple feature object (with a list column of comments
+if flatten is \code{FALSE}).
 }
 \description{
-Get comments from a Felt map
+Get comments from a Felt map as a data frame or simple feature object. The
+results include a comment_url column based on the comment ID value.
 }
 \details{
-API documentation
-\url{https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48}
+See \href{https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#0d5e58ee84e0445d8484445a27be1d48}{Felt API documentation}
+on the endpoint for exporting comments.
 }
