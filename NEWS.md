@@ -4,7 +4,7 @@
 * Add support for basemap and layer_urls parameter to `create_felt_map()` function.
 * Remove url parameter and add support for passing URLs as map_id parameter. (2023-07-13)
 * Add `get_felt_comments()` function (2023-07-13).
-* Add `get_felt_styles()` and `update_felt_styles()` functions (2023-07-13).
+* Add `get_felt_style()` and `update_felt_style()` functions (2023-07-13).
 
 # feltr 0.1.1 (2023-06-30)
 
