@@ -4,7 +4,7 @@
 \alias{create_felt_layer}
 \alias{delete_felt_layer}
 \alias{read_felt_layers}
-\title{Read layers from a Felt map, delete a layer, or create a new layer from a URL}
+\title{Read layers from a Felt map, delete a layer, or create a new layer}
 \usage{
 create_felt_layer(map_id, layer, name = NULL, token = NULL)
 
@@ -20,8 +20,8 @@ read_felt_layers(
 \arguments{
 \item{map_id}{A Felt map URL or map ID.}
 
-\item{layer}{Required. Layer source URL, either a supported static file or a
-URL supported by Felt. See
+\item{layer}{Required. File path or a layer source URL, either a supported
+static file or a URL supported by Felt. See
 \url{https://feltmaps.notion.site/Upload-Anything-b26d739e80184127872faa923b55d232#3e37f06bc38c4971b435fbff2f4da6cb}}
 
 \item{name}{Name for new map layer.}
@@ -44,7 +44,8 @@ mentioned in error messages as the source of the error. See the
 }
 \description{
 Read layers from a Felt map, delete a single layer, or create a new layer
-from a URL. Note that the layers do not include data.
+from a URL or file. Note that reading layers does not return the layer data
+only a list of the layers.
 }
 \examples{
 

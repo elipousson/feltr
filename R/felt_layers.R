@@ -1,12 +1,13 @@
-#' Read layers from a Felt map, delete a layer, or create a new layer from a URL
+#' Read layers from a Felt map, delete a layer, or create a new layer
 #'
 #' Read layers from a Felt map, delete a single layer, or create a new layer
-#' from a URL. Note that the layers do not include data.
+#' from a URL or file. Note that reading layers does not return the layer data
+#' only a list of the layers.
 #'
 #' @inheritParams read_felt_map
 #' @inheritParams request_felt
-#' @param layer Required. Layer source URL, either a supported static file or a
-#'   URL supported by Felt. See
+#' @param layer Required. File path or a layer source URL, either a supported
+#'   static file or a URL supported by Felt. See
 #'   <https://feltmaps.notion.site/Upload-Anything-b26d739e80184127872faa923b55d232#3e37f06bc38c4971b435fbff2f4da6cb>
 #' @param name Name for new map layer.
 #' @examples
@@ -32,28 +33,46 @@ create_felt_layer <- function(map_id,
     )
 
     data <- httr2::resp_body_json(resp)[["data"]]
-  } else if (file.exists(layer)) {
-    cli_abort(
-      c(
-        "{.arg layer} must be a URL.",
-        "Support for local files will be added in the future."
-      )
-    )
 
+    layer_name <- data[["attributes"]][["name"]]
+  } else if (file.exists(layer)) {
     resp <- request_felt(
       endpoint = "create layer",
       map_id = map_id,
       data = list(
         file_names = list(basename(layer)),
         name = name
-      )
+      ),
+      token = token
     )
+
+    data <- httr2::resp_body_json(resp)[["data"]]
+
+    req <- httr2::req_body_multipart(
+      httr2::request(base_url = data[["attributes"]][["url"]]),
+      !!!data[["attributes"]][["presigned_attributes"]],
+      file = curl::form_file(layer, name = basename(layer))
+    )
+
+    upload_resp <- httr2::req_perform(req)
+
+    finish_resp <- request_felt(
+      endpoint = "finish layer",
+      map_id = map_id,
+      layer_id = data[["attributes"]][["layer_id"]],
+      data = list(
+        filename = basename(layer)
+      ),
+      token = token
+    )
+
+    layer_name <- name %||% basename(layer)
   }
 
   map_url <- felt_map_url_build(map_id)
 
   cli_alert_success(
-    "Layer {.val {data$attributes$name}} created at {.url {map_url}}"
+    "Layer {.val {layer_name}} created at {.url {map_url}}"
   )
 
   invisible(data)
