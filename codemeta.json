@@ -217,7 +217,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "361.417KB",
+  "fileSize": "364.901KB",
   "releaseNotes": "https://github.com/elipousson/feltr/blob/master/NEWS.md",
   "readme": "https://github.com/elipousson/feltr/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/elipousson/feltr?branch=main",
