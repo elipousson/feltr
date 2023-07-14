@@ -25,9 +25,6 @@
     <loc>https://elipousson.github.io/feltr/reference/emojis_reference.html</loc>
   </url>
   <url>
-    <loc>https://elipousson.github.io/feltr/reference/felt_layer_styles.html</loc>
-  </url>
-  <url>
     <loc>https://elipousson.github.io/feltr/reference/felt_user.html</loc>
   </url>
   <url>
@@ -38,6 +35,9 @@
   </url>
   <url>
     <loc>https://elipousson.github.io/feltr/reference/get_felt_data.html</loc>
+  </url>
+  <url>
+    <loc>https://elipousson.github.io/feltr/reference/get_felt_style.html</loc>
   </url>
   <url>
     <loc>https://elipousson.github.io/feltr/reference/index.html</loc>
