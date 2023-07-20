@@ -134,8 +134,8 @@ delete_felt_layer <- function(map_id,
     layer_id <- layers$id[[as.integer(layer_id)]]
   } else if (safely) {
     safety_check(
-      "Do you want to delete layer {.val {layer_id}}
-      from {.url {map_url}}?",
+      safely = safely,
+      prompt = "Do you want to delete layer {.val {layer_id}}?",
       message = "Canceled request to delete layer"
     )
   }
