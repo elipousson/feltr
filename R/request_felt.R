@@ -43,7 +43,10 @@ request_felt <- function(base_url = "https://felt.com/api/v1",
   httr2::req_perform(req, error_call = call)
 }
 
-#' @param map_id A Felt map URL or map ID.
+#' @param map_id A Felt map URL, map ID string, or a named list with a id and
+#'   type element. If map_id is a list, it must be equivalent to the output from
+#'   [get_felt_map()] where the list includes a "id" string and a "type" string
+#'   with the value "map".
 #' @rdname request_felt
 #' @name req_felt_template
 req_felt_template <- function(req,
@@ -123,6 +126,14 @@ req_felt_auth <- function(req, token, call) {
 set_map_id <- function(map_id, call = caller_env()) {
   if (is_url(map_id)) {
     return(felt_url_parse(map_id, call = call))
+  }
+
+  if (is_list(map_id)) {
+    stopifnot(
+      all(has_name(map_id, c("id", "type")) && map_id[["type"]] == "map")
+    )
+
+    map_id <- map_id[["id"]]
   }
 
   check_string(map_id, allow_empty = FALSE, call = call)

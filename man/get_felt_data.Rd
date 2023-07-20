@@ -7,7 +7,10 @@
 get_felt_data(map_id, token = NULL, call = caller_env())
 }
 \arguments{
-\item{map_id}{A Felt map URL or map ID.}
+\item{map_id}{A Felt map URL, map ID string, or a named list with a id and
+type element. If map_id is a list, it must be equivalent to the output from
+\code{\link[=get_felt_map]{get_felt_map()}} where the list includes a "id" string and a "type" string
+with the value "map".}
 
 \item{token}{Felt personal access token}
 

@@ -11,7 +11,10 @@ get_felt_style(map_id, layer_id = NULL, call = caller_env())
 update_felt_style(map_id, style, layer_id = NULL, call = caller_env())
 }
 \arguments{
-\item{map_id}{A Felt map URL or map ID.}
+\item{map_id}{A Felt map URL, map ID string, or a named list with a id and
+type element. If map_id is a list, it must be equivalent to the output from
+\code{\link[=get_felt_map]{get_felt_map()}} where the list includes a "id" string and a "type" string
+with the value "map".}
 
 \item{layer_id}{If \code{NULL} (default), all layers for the map are used.
 Multi-layer maps are not currently supported. Otherwise use a layer ID
