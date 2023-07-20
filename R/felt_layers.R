@@ -132,15 +132,19 @@ delete_felt_layer <- function(map_id,
     }
 
     layer_id <- layers$id[[as.integer(layer_id)]]
-  } else if (safely) {
-    safety_check(
-      safely = safely,
-      prompt = "Do you want to delete layer {.val {layer_id}}?",
-      message = "Canceled request to delete layer"
-    )
+    safely <- FALSE
   }
 
   check_string(layer_id, allow_empty = FALSE)
+
+  if (safely) {
+    safety_check(
+      safely = safely,
+      "Deleting layer {.val {layer_id}}",
+      prompt = "Do you want to continue?",
+      message = "Canceled request to delete layer"
+    )
+  }
 
   request_felt(
     endpoint = "delete layer",
