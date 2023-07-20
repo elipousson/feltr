@@ -1,15 +1,22 @@
 #' Read layers from a Felt map, delete a layer, or create a new layer
 #'
 #' Read layers from a Felt map, delete a single layer, or create a new layer
-#' from a URL or file. Note that reading layers does not return the layer data
-#' only a list of the layers.
+#' from a URL, file, or sf or sfc object. Note that reading layers does not
+#' return layer data—only a list of layers.
 #'
 #' @inheritParams read_felt_map
 #' @inheritParams request_felt
-#' @param layer Required. File path or a layer source URL, either a supported
-#'   static file or a URL supported by Felt. See
+#' @param layer Required. A object, file path, a layer source URL, or a `sf` or
+#'   `sfc` object. If layer is a file path or a source URL, the file type or URL
+#'   type must be supported by Felt. See
 #'   <https://feltmaps.notion.site/Upload-Anything-b26d739e80184127872faa923b55d232#3e37f06bc38c4971b435fbff2f4da6cb>
+#'   for details. If layer is a `sf` or `sfc` object, the object is saved to a
+#'   temporary file using the supplied fileext.
 #' @param name Name for new map layer.
+#' @param fileext File extension to use for temporary file if layer is a `sf` or
+#'   `sfc` object.
+#' @param ... Additional parameters passed to [sf::st_write()] if layer is a
+#'   `sf` or `sfc` object.
 #' @examples
 #'
 #' create_felt_layer()
@@ -18,7 +25,19 @@
 create_felt_layer <- function(map_id,
                               layer,
                               name = NULL,
+                              fileext = "gpkg",
+                              ...,
                               token = NULL) {
+  if (inherits(layer, c("sf", "sfc"))) {
+    check_string(fileext, allow_empty = FALSE)
+    obj <- layer
+    layer <- tempfile("layer", fileext = paste0(".", fileext))
+    cli_alert_success(
+      "Writing layer to data source {.file {layer}}"
+    )
+    sf::st_write(obj = obj, dsn = layer, quiet = TRUE, ...)
+  }
+
   check_string(layer, allow_empty = FALSE)
 
   if (is_url(layer)) {

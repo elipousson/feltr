@@ -6,7 +6,14 @@
 \alias{read_felt_layers}
 \title{Read layers from a Felt map, delete a layer, or create a new layer}
 \usage{
-create_felt_layer(map_id, layer, name = NULL, token = NULL)
+create_felt_layer(
+  map_id,
+  layer,
+  name = NULL,
+  fileext = "gpkg",
+  ...,
+  token = NULL
+)
 
 delete_felt_layer(map_id, layer_id = NULL, safely = TRUE, token = NULL)
 
@@ -20,11 +27,20 @@ read_felt_layers(
 \arguments{
 \item{map_id}{A Felt map URL or map ID.}
 
-\item{layer}{Required. File path or a layer source URL, either a supported
-static file or a URL supported by Felt. See
-\url{https://feltmaps.notion.site/Upload-Anything-b26d739e80184127872faa923b55d232#3e37f06bc38c4971b435fbff2f4da6cb}}
+\item{layer}{Required. A object, file path, a layer source URL, or a \code{sf} or
+\code{sfc} object. If layer is a file path or a source URL, the file type or URL
+type must be supported by Felt. See
+\url{https://feltmaps.notion.site/Upload-Anything-b26d739e80184127872faa923b55d232#3e37f06bc38c4971b435fbff2f4da6cb}
+for details. If layer is a \code{sf} or \code{sfc} object, the object is saved to a
+temporary file using the supplied fileext.}
 
 \item{name}{Name for new map layer.}
+
+\item{fileext}{File extension to use for temporary file if layer is a \code{sf} or
+\code{sfc} object.}
+
+\item{...}{Additional parameters passed to \code{\link[sf:st_write]{sf::st_write()}} if layer is a
+\code{sf} or \code{sfc} object.}
 
 \item{token}{Felt personal access token}
 
@@ -44,8 +60,8 @@ mentioned in error messages as the source of the error. See the
 }
 \description{
 Read layers from a Felt map, delete a single layer, or create a new layer
-from a URL or file. Note that reading layers does not return the layer data
-only a list of the layers.
+from a URL, file, or sf or sfc object. Note that reading layers does not
+return layer data—only a list of layers.
 }
 \examples{
 
