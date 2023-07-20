@@ -81,7 +81,10 @@ get_felt_map() returns a list of map details and optionally (if read = TRUE) add
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>map_id</dt>
-<dd><p>A Felt map URL or map ID.</p></dd>
+<dd><p>A Felt map URL, map ID string, or a named list with a id and
+type element. If map_id is a list, it must be equivalent to the output from
+<code>get_felt_map()</code> where the list includes a "id" string and a "type" string
+with the value "map".</p></dd>
 
 
 <dt>...</dt>
