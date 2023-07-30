@@ -87,8 +87,7 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/elipousson/feltr/" class="external-link">feltr</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/elipousson/feltr/" class="external-link">feltr</a></span><span class="op">)</span></span></code></pre></div>
 <p>You can use <code><a href="reference/read_felt_map.html">read_felt_map()</a></code> to create an sf object with features from a map URL.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"</span></span>
@@ -108,6 +107,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $attributes$url</span></span>
 <span><span class="co">#&gt; [1] "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $attributes$thumbnail_url</span></span>
+<span><span class="co">#&gt; [1] "https://d3a9fdbxbk3c9v.cloudfront.net/0fc919da-9654-4544-8acb-b9e74253fb3e.jpg"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $id</span></span>
@@ -133,10 +135,11 @@
 <span><span class="co">#&gt; resolution  : 6439.813, 6439.813  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) </span></span>
-<span><span class="co">#&gt; source      : file82c85607acd5.jpg </span></span>
+<span><span class="co">#&gt; source      : file7bca6fa8700a.jpg </span></span>
 <span><span class="co">#&gt; colors RGB  : 1, 2, 3 </span></span>
-<span><span class="co">#&gt; names       : file82c85607acd5_1, file82c85607acd5_2, file82c85607acd5_3</span></span></code></pre></div>
+<span><span class="co">#&gt; names       : file7bca6fa8700a_1, file7bca6fa8700a_2, file7bca6fa8700a_3</span></span></code></pre></div>
 <p>For more information on the Felt Public API check out the guide to <a href="https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa" class="external-link">Getting Started with the Felt API</a> or the <a href="https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad" class="external-link">Felt Public API reference</a>.</p>
+<p>Note, in July 2024, Felt <a href="https://felt.com/blog/introducing-pricing" class="external-link">announced the pricing for subscription plans</a> that are expected to limit API access to paid accounts starting in January 2024. Educators can also apply for free accounts to retain API access after January 2024.</p>
 </div>
 <div class="section level2">
 <h2 id="related-projects">Related Projects<a class="anchor" aria-label="anchor" href="#related-projects"></a>
@@ -148,6 +151,8 @@
 <a href="https://pypi.org/project/felt-upload/" class="external-link">felt-upload</a>: A Python package to upload data to Felt.</li>
 <li>
 <a href="https://plugins.qgis.org/plugins/felt/" class="external-link">Add to Felt QGIS Plugin</a>: A QGIS plugin for uploading data to Felt.</li>
+<li>
+<a href="https://github.com/moss-xyz/feltpy" class="external-link">feltpy</a>: A lightweight Python package to interact with the public API of Felt.com.</li>
 </ul>
 </div>
 </div>
