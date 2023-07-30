@@ -28,7 +28,6 @@ pak::pkg_install("elipousson/feltr")
 
 ``` r
 library(feltr)
-## basic example code
 ```
 
 You can use `read_felt_map()` to create an sf object with features from
@@ -57,6 +56,9 @@ get_felt_map(url)
 #> 
 #> $attributes$url
 #> [1] "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
+#> 
+#> $attributes$thumbnail_url
+#> [1] "https://d3a9fdbxbk3c9v.cloudfront.net/0fc919da-9654-4544-8acb-b9e74253fb3e.jpg"
 #> 
 #> 
 #> $id
@@ -87,9 +89,9 @@ image_map
 #> resolution  : 6439.813, 6439.813  (x, y)
 #> extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)
 #> coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-#> source      : file82c85607acd5.jpg 
+#> source      : file7bca6fa8700a.jpg 
 #> colors RGB  : 1, 2, 3 
-#> names       : file82c85607acd5_1, file82c85607acd5_2, file82c85607acd5_3
+#> names       : file7bca6fa8700a_1, file7bca6fa8700a_2, file7bca6fa8700a_3
 ```
 
 For more information on the Felt Public API check out the guide to
@@ -97,6 +99,12 @@ For more information on the Felt Public API check out the guide to
 API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa)
 or the [Felt Public API
 reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad).
+
+Note, in July 2024, Felt [announced the pricing for subscription
+plans](https://felt.com/blog/introducing-pricing) that are expected to
+limit API access to paid accounts starting in January 2024. Educators
+can also apply for free accounts to retain API access after January
+2024.
 
 ## Related Projects
 
@@ -106,3 +114,5 @@ reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a
   to upload data to Felt.
 - [Add to Felt QGIS Plugin](https://plugins.qgis.org/plugins/felt/): A
   QGIS plugin for uploading data to Felt.
+- [feltpy](https://github.com/moss-xyz/feltpy): A lightweight Python
+  package to interact with the public API of Felt.com.
