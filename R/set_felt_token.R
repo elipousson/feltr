@@ -12,10 +12,10 @@ set_felt_token <- function(token = NULL,
                            install = FALSE,
                            overwrite = FALSE,
                            default = "FELT_ACCESS_TOKEN") {
-  settoken::set_envvar_token(
-    token,
-    install,
-    overwrite,
+  set_r_environ_token(
+    token = token,
+    install = install,
+    overwrite = overwrite,
     default = default
   )
 }
@@ -27,9 +27,9 @@ set_felt_token <- function(token = NULL,
 get_felt_token <- function(token = NULL,
                            default = "FELT_ACCESS_TOKEN",
                            call = caller_env()) {
-  settoken::get_envvar_token(
-    token,
-    default,
+  get_r_environ_token(
+    token = token,
+    default = default,
     call = call
   )
 }
