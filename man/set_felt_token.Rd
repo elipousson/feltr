@@ -21,12 +21,14 @@ get_felt_token(
 \arguments{
 \item{token}{Felt personal access token}
 
-\item{install}{Add your token to your \code{.Renviron} for use in future sessions.}
+\item{install}{If \code{TRUE}, this function adds your token to your \code{.Renviron}
+for use in future sessions. Defaults to \code{FALSE}.}
 
-\item{overwrite}{If \code{TRUE}, overwrite any existing token in \code{.Renviron},}
+\item{overwrite}{If \code{TRUE}, overwrite any existing token in \code{.Renviron} using
+the same environment variable name. Defaults to \code{FALSE}.}
 
-\item{default}{Default name used for environmental variable where the token
-is stored.}
+\item{default}{Default name used for environment variable where the token
+is saved.}
 
 \item{call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be
