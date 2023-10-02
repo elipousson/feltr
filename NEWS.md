@@ -1,4 +1,4 @@
-# feltr (development version)
+# feltr 0.1.2
 
 * Add `read_felt_layers()`, `create_felt_map()`, and `delete_felt_map()` functions and `get_felt_map()` function.
 * Add support for `basemap` and `layer_urls` parameter to `create_felt_map()` function.
