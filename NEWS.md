@@ -1,4 +1,4 @@
-# feltr (development)
+# feltr (development version)
 
 * Add support for `fill_color`, `stroke_color`, and `webhook_url` parameters (2023-11-09) to `create_felt_layer()`.
 * Add `update_felt_layer()` function (2023-11-09).
