@@ -1,3 +1,8 @@
+# feltr (development)
+
+* Add support for `fill_color`, `stroke_color`, and `webhook_url` parameters (2023-11-09) to `create_felt_layer()`.
+* Add `update_felt_layer()` function (2023-11-09).
+
 # feltr 0.1.2
 
 * Add `read_felt_layers()`, `create_felt_map()`, and `delete_felt_map()` functions and `get_felt_map()` function.
