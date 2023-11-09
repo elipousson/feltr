@@ -4,6 +4,7 @@
 \alias{create_felt_layer}
 \alias{delete_felt_layer}
 \alias{read_felt_layers}
+\alias{update_felt_layer}
 \title{Read layers from a Felt map, delete a layer, or create a new layer}
 \usage{
 create_felt_layer(
@@ -12,6 +13,9 @@ create_felt_layer(
   name = NULL,
   fileext = "gpkg",
   ...,
+  fill_color = NULL,
+  stroke_color = NULL,
+  webhook_url = NULL,
   token = NULL
 )
 
@@ -19,6 +23,16 @@ delete_felt_layer(map_id, layer_id = NULL, safely = TRUE, token = NULL)
 
 read_felt_layers(
   map_id,
+  simplifyVector = TRUE,
+  token = NULL,
+  call = caller_env()
+)
+
+update_felt_layer(
+  map_id,
+  layer_id,
+  name = NULL,
+  description = NULL,
   simplifyVector = TRUE,
   token = NULL,
   call = caller_env()
@@ -45,6 +59,12 @@ temporary file using the supplied fileext.}
 \item{...}{Additional parameters passed to \code{\link[sf:st_write]{sf::st_write()}} if layer is a
 \code{sf} or \code{sfc} object.}
 
+\item{fill_color, stroke_color}{Hex string to use as the layer fill or stroke
+color. Optional.}
+
+\item{webhook_url}{When the layer finishes processing, Felt will notify to
+this URL.}
+
 \item{token}{Felt personal access token}
 
 \item{layer_id}{Layer ID. Layer IDs for a map can be listed using
@@ -60,14 +80,13 @@ booleans, numbers, and strings) be caused to atomic vectors?}
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+
+\item{description}{Map description}
 }
 \description{
-Read layers from a Felt map, delete a single layer, or create a new layer
-from a URL, file, or sf or sfc object. Note that reading layers does not
-return layer data—only a list of layers.
-}
-\examples{
-
-create_felt_layer()
-
+Read layers from a Felt map with \code{\link[=read_felt_layers]{read_felt_layers()}}, delete a single layer
+with \code{\link[=delete_felt_layer]{delete_felt_layer()}}, update a layer with \code{\link[=update_felt_layer]{update_felt_layer()}}, or
+create a new layer from a URL, file, or sf or sfc object with
+\code{\link[=create_felt_layer]{create_felt_layer()}}. Note that reading layers does not return layer
+data—only a list of layers.
 }

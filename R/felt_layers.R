@@ -1,8 +1,10 @@
 #' Read layers from a Felt map, delete a layer, or create a new layer
 #'
-#' Read layers from a Felt map, delete a single layer, or create a new layer
-#' from a URL, file, or sf or sfc object. Note that reading layers does not
-#' return layer data—only a list of layers.
+#' Read layers from a Felt map with [read_felt_layers()], delete a single layer
+#' with [delete_felt_layer()], update a layer with [update_felt_layer()], or
+#' create a new layer from a URL, file, or sf or sfc object with
+#' [create_felt_layer()]. Note that reading layers does not return layer
+#' data—only a list of layers.
 #'
 #' @inheritParams read_felt_map
 #' @inheritParams request_felt
@@ -17,9 +19,10 @@
 #'   `sfc` object.
 #' @param ... Additional parameters passed to [sf::st_write()] if layer is a
 #'   `sf` or `sfc` object.
-#' @examples
-#'
-#' create_felt_layer()
+#' @param fill_color,stroke_color Hex string to use as the layer fill or stroke
+#'   color. Optional.
+#' @param webhook_url When the layer finishes processing, Felt will notify to
+#'   this URL.
 #'
 #' @export
 create_felt_layer <- function(map_id,
@@ -27,6 +30,9 @@ create_felt_layer <- function(map_id,
                               name = NULL,
                               fileext = "gpkg",
                               ...,
+                              fill_color = NULL,
+                              stroke_color = NULL,
+                              webhook_url = NULL,
                               token = NULL) {
   if (inherits(layer, c("sf", "sfc"))) {
     check_string(fileext, allow_empty = FALSE)
@@ -45,7 +51,10 @@ create_felt_layer <- function(map_id,
       endpoint = "import url",
       data = list(
         layer_url = layer,
-        name = name
+        name = name,
+        fill_color = fill_color,
+        stroke_color = stroke_color,
+        webhook_url = webhook_url
       ),
       map_id = map_id,
       token = token
@@ -60,7 +69,10 @@ create_felt_layer <- function(map_id,
       map_id = map_id,
       data = list(
         file_names = list(basename(layer)),
-        name = name
+        name = name,
+        fill_color = fill_color,
+        stroke_color = stroke_color,
+        webhook_url = webhook_url
       ),
       token = token
     )
@@ -188,4 +200,36 @@ read_felt_layers <- function(map_id,
   }
 
   layers
+}
+
+#' @name update_felt_layer
+#' @rdname create_felt_layer
+#' @export
+update_felt_layer <- function(map_id,
+                              layer_id,
+                              name = NULL,
+                              description = NULL,
+                              simplifyVector = TRUE,
+                              token = NULL,
+                              call = caller_env()) {
+  map_url <- felt_map_url_build(map_id)
+
+  check_string(layer_id, allow_empty = FALSE, call = call)
+
+  resp <- request_felt(
+    endpoint = "update layer",
+    map_id = map_id,
+    layer_id = layer_id,
+    data = list(
+      name = name,
+      description = description
+    ),
+    token = token
+  )
+
+  cli_alert_success(
+    "Layer {.val {layer_id}} updated at {.url {map_url}}"
+  )
+
+  invisible(httr2::resp_body_json(resp, simplifyVector = simplifyVector))
 }
