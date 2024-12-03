@@ -1,69 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://elipousson.github.io/feltr/404.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/index.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/create_felt_layer.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/emojis_reference.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/felt_user.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/feltr-package.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/get_felt_comments.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/get_felt_data.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/get_felt_style.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/is_felt_url.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/read_felt.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/read_felt_map.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/read_felt_raster.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/request_felt.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/set_felt_map_data.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/set_felt_token.html</loc>
-  </url>
-  <url>
-    <loc>https://elipousson.github.io/feltr/reference/set_r_environ_token.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://elipousson.github.io/feltr/404.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/LICENSE-text.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/LICENSE.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/authors.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/index.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/news/index.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/create_felt_layer.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/emojis_reference.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/felt_user.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/feltr-package.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/get_felt_comments.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/get_felt_data.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/get_felt_style.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/index.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/is_felt_url.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/read_felt.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/read_felt_map.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/read_felt_raster.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/request_felt.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/set_felt_map_data.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/set_felt_token.html</loc></url>
+<url><loc>https://elipousson.github.io/feltr/reference/set_r_environ_token.html</loc></url>
 </urlset>
+
