@@ -16,6 +16,20 @@ coverage](https://codecov.io/gh/elipousson/feltr/branch/main/graph/badge.svg)](h
 The goal of feltr is to read maps from Felt as simple feature or
 `SpatRaster` objects.
 
+<div class="callout-note" collapse="false" appearance="default"
+icon="true">
+
+## Package does not support the Felt API v2
+
+This package does not support the Felt API and, as of December 2024, I
+have no specific timeline for when the package will be updated to
+restore functionality. Please use [the feltr
+package](https://christophertkenny.com/feltr/index.html) (identical name
+but a different developer) for API access or follow [this GitHub issue
+for updates](https://github.com/elipousson/feltr/issues/2).
+
+</div>
+
 ## Installation
 
 You can install the development version of feltr like so:
@@ -34,43 +48,19 @@ You can use `read_felt_map()` to create an sf object with features from
 a map URL.
 
 ``` r
+
 url <- "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
 
 site_plan <- read_felt_map(url)
 
 plot(site_plan)
-#> Warning: plotting the first 9 out of 22 attributes; use max.plot = 22 to plot
-#> all
 ```
-
-<img src="man/figures/README-read-1.png" width="100%" />
 
 `get_felt_map()` returns a list with basic information about a map (set
 `read = TRUE` to read map elements and layers at the same time):
 
 ``` r
 get_felt_map(url)
-#> $attributes
-#> $attributes$title
-#> [1] "Site Plan Example"
-#> 
-#> $attributes$url
-#> [1] "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
-#> 
-#> $attributes$thumbnail_url
-#> [1] "https://d3a9fdbxbk3c9v.cloudfront.net/0fc919da-9654-4544-8acb-b9e74253fb3e.jpg"
-#> 
-#> 
-#> $id
-#> [1] "PGTipS2mT8CYBIVlyAm9BkD"
-#> 
-#> $links
-#> $links$self
-#> [1] "https://felt.com/api/v1/maps/PGTipS2mT8CYBIVlyAm9BkD"
-#> 
-#> 
-#> $type
-#> [1] "map"
 ```
 
 You can also use `read_felt_raster()` (a wrapper for
@@ -84,21 +74,12 @@ image_map <- read_felt_raster(
 )
 
 image_map
-#> class       : SpatRaster 
-#> dimensions  : 655, 764, 3  (nrow, ncol, nlyr)
-#> resolution  : 6439.813, 6439.813  (x, y)
-#> extent      : -12209153, -7289135, 2474851, 6692929  (xmin, xmax, ymin, ymax)
-#> coord. ref. : WGS 84 / Pseudo-Mercator (EPSG:3857) 
-#> source      : file7bca6fa8700a.jpg 
-#> colors RGB  : 1, 2, 3 
-#> names       : file7bca6fa8700a_1, file7bca6fa8700a_2, file7bca6fa8700a_3
 ```
 
 For more information on the Felt Public API check out the guide to
 [Getting Started with the Felt
-API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa)
-or the [Felt Public API
-reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad).
+API](https://developers.felt.com/rest-api/getting-started) or the [Felt
+API reference](https://developers.felt.com/rest-api/api-reference).
 
 Note, in July 2024, Felt [announced the pricing for subscription
 plans](https://felt.com/blog/introducing-pricing) that are expected to

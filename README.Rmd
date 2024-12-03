@@ -23,6 +23,12 @@ knitr::opts_chunk$set(
 
 The goal of feltr is to read maps from Felt as simple feature or `SpatRaster` objects.
 
+:::{.callout-note collapse=false appearance='default' icon=true}
+## Package does not support the Felt API v2
+
+This package does not support the Felt API and, as of December 2024, I have no specific timeline for when the package will be updated to restore functionality. Please use [the feltr package](https://christophertkenny.com/feltr/index.html) (identical name but a different developer) for API access or follow [this GitHub issue for updates](https://github.com/elipousson/feltr/issues/2).
+:::
+
 ## Installation
 
 You can install the development version of feltr like so:
@@ -39,7 +45,8 @@ library(feltr)
 
 You can use `read_felt_map()` to create an sf object with features from a map URL.
 
-```{r read}
+```{r read, eval=FALSE}
+
 url <- "https://felt.com/map/Site-Plan-Example-PGTipS2mT8CYBIVlyAm9BkD"
 
 site_plan <- read_felt_map(url)
@@ -49,13 +56,13 @@ plot(site_plan)
 
 `get_felt_map()` returns a list with basic information about a map (set `read = TRUE` to read map elements and layers at the same time):
 
-```{r}
+```{r, eval=FALSE}
 get_felt_map(url)
 ```
 
 You can also use `read_felt_raster()` (a wrapper for `rasterpic::rasterpic_img()`) to create a `SpatRaster` object from a "Image" type feature in Felt.
 
-```{r}
+```{r, eval=FALSE}
 image_map <- read_felt_raster(
   "https://felt.com/map/feltr-sample-map-read-felt-raster-oiinodTbT79BEueYdGp1aND",
   "https://tile.loc.gov/image-services/iiif/service:gmd:gmd370:g3700:g3700:ct003955/full/pct:12.5/0/default.jpg"
@@ -64,7 +71,7 @@ image_map <- read_felt_raster(
 image_map
 ```
 
-For more information on the Felt Public API check out the guide to [Getting Started with the Felt API](https://feltmaps.notion.site/Getting-Started-With-The-Felt-API-69c8b02b7d8e436daa657a04a2dbaffa) or the [Felt Public API reference](https://feltmaps.notion.site/Felt-Public-API-reference-c01e0e6b0d954a678c608131b894e8e1#1e9d31b9ef6c4b23be41938f93aa46ad).
+For more information on the Felt Public API check out the guide to [Getting Started with the Felt API](https://developers.felt.com/rest-api/getting-started) or the [Felt API reference](https://developers.felt.com/rest-api/api-reference).
 
 Note, in July 2024, Felt [announced the pricing for subscription plans](https://felt.com/blog/introducing-pricing) that are expected to limit API access to paid accounts starting in January 2024. Educators can also apply for free accounts to retain API access after January 2024.
 
